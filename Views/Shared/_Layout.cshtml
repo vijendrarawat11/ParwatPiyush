@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ParwatPiyushNewsPortal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ParwatPiyushNewsPortal.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">पर्वत पियुश न्यूज पोर्टल</div>
+            <div class="ads">
+                <!-- Ad Space -->
+                <img src="~/images/logo1.png" alt="Advertisement">
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">पर्वत पियुश न्यूज पोर्टल</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">उत्तराखंड</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">38वेंराष्ट्रीयखेल</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">देश-विदेश</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">धर्म</a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">राजनीति </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">खेल</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            @* <div class="container-fluid"> *@
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 text-center">
+                        <h3>अन्य विषय</h3>
+                        <ul>  
+                            <li>पर्यावरण</li>
+                            <li>फैशन</li>
+                            <li>प्रेरणा</li>
+                            <li>अपराध</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 text-center">
+                        <h3>शहर समाचार </h3>
+                        <ul>
+                            <li>देहरादुन</li>
+                            <li> हरिद्वार </li>
+                            <li>हल्दवानी</li>
+                            <li> ऋषिकेश</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-4 text-center">
+                        <h3>पर्वत पियुश न्यूज </h3>
+                        <p>उत्तराखंड का सबसे विश्वसनीय न्यूज़ पोर्टल</p>
+                        <p>पता: देहरादून, उत्तराखंड - 123456</p>
+                        <p>Phone:<span>+91 123456789</span></p>
+                        <p>Email:<span>parwatpiyush@gmail.com</span></p>
+                    </div>
+                </div>
+            @* </div> *@
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

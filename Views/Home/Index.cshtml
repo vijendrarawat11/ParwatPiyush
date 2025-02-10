@@ -1,0 +1,183 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @* <div class="image-container"> *@
+    @*     <div class="title-container"> *@
+    @*         <div class="vertical-line"></div> *@
+    @*         <span class="title-text">ताजा खबर</span> *@
+    @*     </div> *@
+    @*     <img src="~/images/logo1.png" alt="News Image" class="full-width-image"> *@
+    @*     <div class="text-overlay"> *@
+    @*         <div class="title-container"> *@
+    @*             <span>February 5,2025</span> *@
+    @*             <div class="vertical-line-blue"></div> *@
+    @*             <span>पर्वत पियुश न्यूज पोर्टल</span> *@
+    @*         </div> *@
+    @*         <h3>दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</h3> *@
+    @*         <p> 70 विधानसभा सीटों पर 699 उम्मीदवारों की किस्मत का फैसला 1.56 करोड़ मतदाता करेंगे। 13,7 *@
+    @*     </div> *@
+    @* </div> *@
+     <div class="slider-container">
+        <button class="prev-btn" onclick="prevSlide()">&#10094;</button> <!-- Left Button -->
+        <div class="slider">
+            <div class="slide">
+                <div class="image-container">
+                    <div class="title-container">
+                        <div class="vertical-line"></div>
+                        <span class="title-text">ताजा खबर</span>
+                    </div>
+                    <img src="~/images/logo1.png" alt="Image 1" class="full-width-image">
+                    <div class="text-overlay">
+                        <div class="title-container">
+                            <span>February 5, 2025</span>
+                            <div class="vertical-line-blue"></div>
+                            <span> न्यूज </span> 
+                        </div>
+                        <h3>दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</h3>
+                        <p>70 विधानसभा सीटों पर 699 उम्मीदवारों की किस्मत का फैसला</p> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="image-container">
+                    <div class="title-container">
+                        <div class="vertical-line"></div>
+                        <span class="title-text">ताजा खबर</span>
+                    </div>
+                    <img src="~/images/logo1.png" alt="Image 2" class="full-width-image">
+                    <div class="text-overlay">
+                        <div class="title-container">
+                            <span>February 6, 2025</span>
+                            <div class="vertical-line-blue"></div>
+                            <span> खेल </span> 
+                        </div>
+                        <h3>भारत ने विश्व कप फाइनल में जगह बनाई</h3>
+                        <p> रोमांचक मुकाबले में ऑस्ट्रेलिया को हराया</p> 
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="image-container">
+                    <div class="title-container">
+                        <div class="vertical-line"></div>
+                        <span class="title-text">ताजा खबर</span>
+                    </div>
+                    <img src="~/images/logo1.png" alt="Image 3" class="full-width-image">
+                    <div class="text-overlay">
+                        <div class="title-container">
+                            <span>February 7, 2025</span>
+                            <div class="vertical-line-blue"></div>
+                            <span> राजनीति </span> 
+                        </div>
+                        <h3>बजट 2025 पेश किया गया</h3>
+                        <p> इस बार शिक्षा और स्वास्थ्य पर बड़ा निवेश</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="next-btn" onclick="nextSlide()">&#10095;</button> <!-- Right Button -->
+    </div>
+    <!-- Main Content -->
+    <section class="main-content">
+        <article class="news-article">
+            <div class="title-container">
+            <div class="vertical-line"></div>
+                <span class="title-text">राजनीति</span>
+           </div>
+            <img src="~/images/logo1.png" alt="News Image" class="news-image">
+            <div class="title-container">
+                <span>February 5,2025</span>
+                <div class="vertical-line-blue"></div>
+                <span>पर्वत पियुश न्यूज पोर्टल</span>
+             </div>
+            <h3>दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</h3>
+            <p> 70 विधानसभा सीटों पर 699 उम्मीदवारों की किस्मत का फैसला 1.56 करोड़ मतदाता करेंगे। 13,766 मतदान केंद्रों पर सुबह सात बजे से शाम छह बजे तक मतदान होगा। </p>
+            <a asp-controller="News" asp-action="Details" asp-route-id="1">Read more</a>
+        </article>
+
+        <article class="news-article">
+            <div class="title-container">
+                <div class="vertical-line"></div>
+                <span class="title-text">खेल</span>
+            </div>
+            <img src="~/images/logo1.png" alt="News Image" class="news-image">
+            <div class="title-container">
+                <span>February 5,2025</span>
+                <div class="vertical-line-blue"></div>
+                <span>पर्वत पियुश न्यूज पोर्टल</span>
+            </div>
+
+            <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3>
+            <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p>
+            <a asp-controller="News" asp-action="Details" asp-route-id="2">Read more</a>
+        </article>
+        <article class="news-article">
+            <div class="title-container">
+                <div class="vertical-line"></div>
+                <span class="title-text">खेल</span>
+            </div>
+            <img src="~/images/logo1.png" alt="News Image" class="news-image">
+            <div class="title-container">
+                <span>February 5,2025</span>
+                <div class="vertical-line-blue"></div>
+                <span>पर्वत पियुश न्यूज पोर्टल</span>
+            </div>
+
+            <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3>
+            <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p>
+            <a asp-controller="News" asp-action="Details" asp-route-id="2">Read more</a>
+        </article>
+        <article class="news-article">
+            <div class="title-container">
+                <div class="vertical-line"></div>
+                <span class="title-text">खेल</span>
+            </div>
+            <img src="~/images/logo1.png" alt="News Image" class="news-image">
+            <div class="title-container">
+                <span>February 5,2025</span>
+                <div class="vertical-line-blue"></div>
+                <span>पर्वत पियुश न्यूज पोर्टल</span>
+            </div>
+            <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3>
+            <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p>
+            <a asp-controller="News" asp-action="Details" asp-route-id="2">Read more</a>
+        </article>
+    </section>
+</div>
+
+ <script>
+        const slider = document.querySelector('.slider');
+        let index = 0;
+        const totalSlides = document.querySelectorAll('.slide').length;
+        function autoScroll() {
+            index++;
+            if (index >= totalSlides) {
+                index = 0;
+            }
+            updateSlidePosition();
+        }
+        function updateSlidePosition() {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+        function prevSlide() {
+            index--;
+            if (index < 0) {
+                index = totalSlides - 1;
+            }
+            updateSlidePosition();
+        }
+        function nextSlide() {
+            index++;
+            if (index >= totalSlides) {
+                index = 0;
+            }
+            updateSlidePosition();
+        }
+        setInterval(autoScroll, 30000);
+</script>
+
+

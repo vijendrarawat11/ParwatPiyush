@@ -2,23 +2,34 @@
     ViewData["Title"] = "Home Page";
 }
 
+
 <div class="text-center">
-    @* <div class="image-container"> *@
-    @*     <div class="title-container"> *@
-    @*         <div class="vertical-line"></div> *@
-    @*         <span class="title-text">ताजा खबर</span> *@
-    @*     </div> *@
-    @*     <img src="~/images/logo1.png" alt="News Image" class="full-width-image"> *@
-    @*     <div class="text-overlay"> *@
-    @*         <div class="title-container"> *@
-    @*             <span>February 5,2025</span> *@
-    @*             <div class="vertical-line-blue"></div> *@
-    @*             <span>पर्वत पियुश न्यूज पोर्टल</span> *@
-    @*         </div> *@
-    @*         <h3>दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</h3> *@
-    @*         <p> 70 विधानसभा सीटों पर 699 उम्मीदवारों की किस्मत का फैसला 1.56 करोड़ मतदाता करेंगे। 13,7 *@
-    @*     </div> *@
-    @* </div> *@
+      @model List<ParwatPiyushNewsPortal.Models.News>
+
+        <h2>Latest News</h2>
+        @foreach (var news in Model)
+        {
+            <section class="main-content">
+                <article class="news-article">
+            <div class="title-container">
+                <div class="vertical-line"></div>
+                    <span class="title-text">@(news.Topic != null ? news.Topic.Name : "No Topic")</span>
+            </div>
+             @if (!string.IsNullOrEmpty(news.ImagePath)) 
+                 { 
+                     <img src="@news.ImagePath" alt="News Image" width="200"> 
+                 }
+            <div class="title-container">
+                <span>@news.PublishedDate.ToString("MMMM dd, yyyy")</span>
+                <div class="vertical-line-blue"></div>
+                    <span>@(news.Author != null ? news.Author.Username : "Unknown Author")</span>
+            </div>
+                <a asp-controller="News" asp-action="Details" asp-route-id="2">Read more</a>
+            </article>
+            </section>
+           
+        }
+
      <div class="slider-container">
         <button class="prev-btn" onclick="prevSlide()">&#10094;</button> <!-- Left Button -->
         <div class="slider">

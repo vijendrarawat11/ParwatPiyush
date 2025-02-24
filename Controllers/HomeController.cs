@@ -1,21 +1,36 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ParwatPiyushNewsPortal.Models;
+using ParwatPiyushNewsPortal.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ParwatPiyushNewsPortal.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
+        private readonly ParwatPiyushDB _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+        
+
+        public HomeController(ParwatPiyushDB context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var newsList = _context.News
+                                   .Include(n => n.Topic)
+                                   .Include(n => n.Author)
+                                   .OrderByDescending(n => n.PublishedDate)
+                                   .ToList();
+
+            return View(newsList);
         }
 
         public IActionResult Privacy()

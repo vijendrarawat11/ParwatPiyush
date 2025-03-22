@@ -1,194 +1,269 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@* <div class="text-center"> *@
+@*       @model List<ParwatPiyushNewsPortal.Models.News> *@
 
-
-<div class="text-center">
-      @model List<ParwatPiyushNewsPortal.Models.News>
-
-        <h2>Latest News</h2>
-        @foreach (var news in Model)
-        {
-            <section class="main-content">
-                <article class="news-article">
-            <div class="title-container">
-                <div class="vertical-line"></div>
-                    <span class="title-text">@(news.Topic != null ? news.Topic.Name : "No Topic")</span>
-            </div>
-             @if (!string.IsNullOrEmpty(news.ImagePath)) 
-                 { 
-                     <img src="@news.ImagePath" alt="News Image" width="200"> 
-                 }
-            <div class="title-container">
-                <span>@news.PublishedDate.ToString("MMMM dd, yyyy")</span>
-                <div class="vertical-line-blue"></div>
-                    <span>@(news.Author != null ? news.Author.Username : "Unknown Author")</span>
-            </div>
-                <a asp-controller="News" asp-action="Details" asp-route-id="2">Read more</a>
-            </article>
-            </section>
+@*         <h2>Latest News</h2> *@
+@*         @foreach (var news in Model) *@
+@*         { *@
+@*             <section class="main-content"> *@
+@*                 <article class="news-article"> *@
+@*             <div class="title-container"> *@
+@*                 <div class="vertical-line"></div> *@
+@*                     <span class="title-text">@(news.Topic != null ? news.Topic.Name : "No Topic")</span> *@
+@*             </div> *@
+@*              @if (!string.IsNullOrEmpty(news.ImagePath))  *@
+@*                  {  *@
+@*                      <img src="@news.ImagePath" alt="News Image" width="200">  *@
+@*                  } *@
+@*             <div class="title-container"> *@
+@*                 <span>@news.PublishedDate.ToString("MMMM dd, yyyy")</span> *@
+@*                 <div class="vertical-line-blue"></div> *@
+@*                     <span>@(news.Author != null ? news.Author.Username : "Unknown Author")</span> *@
+@*                     <div class="vertical-line-blue"></div> *@
+@*                     <span>@news.CreatedBy</span> *@
+@*                 </div> *@
+@*                 <a asp-controller="News" asp-action="Details" asp-route-id="2">Read more</a> *@
+@*             </article> *@
+@*             </section> *@
            
-        }
-
-     <div class="slider-container">
-        <button class="prev-btn" onclick="prevSlide()">&#10094;</button> <!-- Left Button -->
-        <div class="slider">
-            <div class="slide">
-                <div class="image-container">
-                    <div class="title-container">
-                        <div class="vertical-line"></div>
-                        <span class="title-text">ताजा खबर</span>
-                    </div>
-                    <img src="~/images/logo1.png" alt="Image 1" class="full-width-image">
-                    <div class="text-overlay">
-                        <div class="title-container">
-                            <span>February 5, 2025</span>
-                            <div class="vertical-line-blue"></div>
-                            <span> न्यूज </span> 
-                        </div>
-                        <h3>दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</h3>
-                        <p>70 विधानसभा सीटों पर 699 उम्मीदवारों की किस्मत का फैसला</p> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide">
-                <div class="image-container">
-                    <div class="title-container">
-                        <div class="vertical-line"></div>
-                        <span class="title-text">ताजा खबर</span>
-                    </div>
-                    <img src="~/images/logo1.png" alt="Image 2" class="full-width-image">
-                    <div class="text-overlay">
-                        <div class="title-container">
-                            <span>February 6, 2025</span>
-                            <div class="vertical-line-blue"></div>
-                            <span> खेल </span> 
-                        </div>
-                        <h3>भारत ने विश्व कप फाइनल में जगह बनाई</h3>
-                        <p> रोमांचक मुकाबले में ऑस्ट्रेलिया को हराया</p> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide">
-                <div class="image-container">
-                    <div class="title-container">
-                        <div class="vertical-line"></div>
-                        <span class="title-text">ताजा खबर</span>
-                    </div>
-                    <img src="~/images/logo1.png" alt="Image 3" class="full-width-image">
-                    <div class="text-overlay">
-                        <div class="title-container">
-                            <span>February 7, 2025</span>
-                            <div class="vertical-line-blue"></div>
-                            <span> राजनीति </span> 
-                        </div>
-                        <h3>बजट 2025 पेश किया गया</h3>
-                        <p> इस बार शिक्षा और स्वास्थ्य पर बड़ा निवेश</p> 
+@*         } *@
+<div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <!-- Card 1 -->
+        <div class="carousel-item active">
+            <div class="card text-bg-dark position-relative">
+                <img src="~/images/news_3.jpg" class="card-img" alt="news">
+                <div class="card-img-overlay d-flex flex-column justify-content-between">
+                    <h5 class="card-title position-absolute top-0 start-0 m-3 fw-bold">राजनीति</h5>
+                    <div class="position-absolute bottom-0 start-0 m-3">
+                        <p class="card-text fw-bold mb-1">राज्य सरकार ने जन भावनाओं के अनुरूप भू सुधारों की नींव रखी : सीएम</p>
+                        <p class="card-text fw-bold"><small>Feb 27, 2025</small></p>
                     </div>
                 </div>
             </div>
         </div>
-        <button class="next-btn" onclick="nextSlide()">&#10095;</button> <!-- Right Button -->
+
+        <!-- Card 2 -->
+        <div class="carousel-item">
+            <div class="card text-bg-dark position-relative">
+                <img src="~/images/news_2.jpg" class="card-img" alt="news">
+                <div class="card-img-overlay d-flex flex-column justify-content-between">
+                    <h5 class="card-title position-absolute top-0 start-0 m-3 fw-bold">अर्थव्यवस्था</h5>
+                    <div class="position-absolute bottom-0 start-0 m-3">
+                        <p class="card-text fw-bold mb-1">नई आर्थिक नीति से देश की GDP में सुधार</p>
+                        <p class="card-text fw-bold"><small>Feb 26, 2025</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="carousel-item">
+            <div class="card text-bg-dark position-relative">
+                <img src="~/images/news_3.jpg" class="card-img" alt="news">
+                <div class="card-img-overlay d-flex flex-column justify-content-between">
+                    <h5 class="card-title position-absolute top-0 start-0 m-3 fw-bold">खेल</h5>
+                    <div class="position-absolute bottom-0 start-0 m-3">
+                        <p class="card-text fw-bold mb-1">भारतीय टीम ने वर्ल्ड कप में शानदार प्रदर्शन किया</p>
+                        <p class="card-text fw-bold"><small>Feb 25, 2025</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="carousel-item">
+            <div class="card text-bg-dark position-relative">
+                <img src="~/images/news1.jpg" class="card-img" alt="news">
+                <div class="card-img-overlay d-flex flex-column justify-content-between">
+                    <h5 class="card-title position-absolute top-0 start-0 m-3 fw-bold">मनोरंजन</h5>
+                    <div class="position-absolute bottom-0 start-0 m-3">
+                        <p class="card-text fw-bold mb-1">नई फिल्म ने बॉक्स ऑफिस पर मचाया धमाल</p>
+                        <p class="card-text fw-bold"><small>Feb 24, 2025</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="carousel-item">
+            <div class="card text-bg-dark position-relative">
+                <img src="~/images/news_2.jpg" class="card-img" alt="news">
+                <div class="card-img-overlay d-flex flex-column justify-content-between">
+                    <h5 class="card-title position-absolute top-0 start-0 m-3 fw-bold">विज्ञान</h5>
+                    <div class="position-absolute bottom-0 start-0 m-3">
+                        <p class="card-text fw-bold mb-1">नए रिसर्च से मेडिकल क्षेत्र में क्रांति</p>
+                        <p class="card-text fw-bold"><small>Feb 23, 2025</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Main Content -->
-    <section class="main-content">
-        <article class="news-article">
-            <div class="title-container">
-            <div class="vertical-line"></div>
-                <span class="title-text">राजनीति</span>
-           </div>
-            <img src="~/images/logo1.png" alt="News Image" class="news-image">
-            <div class="title-container">
-                <span>February 5,2025</span>
-                <div class="vertical-line-blue"></div>
-                <span>पर्वत पियुश न्यूज पोर्टल</span>
-             </div>
-            <h3>दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</h3>
-            <p> 70 विधानसभा सीटों पर 699 उम्मीदवारों की किस्मत का फैसला 1.56 करोड़ मतदाता करेंगे। 13,766 मतदान केंद्रों पर सुबह सात बजे से शाम छह बजे तक मतदान होगा। </p>
-            <a asp-controller="News" asp-action="Details" asp-route-id="1">Read more</a>
-        </article>
 
-        <article class="news-article">
-            <div class="title-container">
-                <div class="vertical-line"></div>
-                <span class="title-text">खेल</span>
-            </div>
-            <img src="~/images/logo1.png" alt="News Image" class="news-image">
-            <div class="title-container">
-                <span>February 5,2025</span>
-                <div class="vertical-line-blue"></div>
-                <span>पर्वत पियुश न्यूज पोर्टल</span>
-            </div>
-
-            <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3>
-            <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p>
-            <a asp-controller="News" asp-action="Details" asp-route-id="2">Read more</a>
-        </article>
-        <article class="news-article">
-            <div class="title-container">
-                <div class="vertical-line"></div>
-                <span class="title-text">खेल</span>
-            </div>
-            <img src="~/images/logo1.png" alt="News Image" class="news-image">
-            <div class="title-container">
-                <span>February 5,2025</span>
-                <div class="vertical-line-blue"></div>
-                <span>पर्वत पियुश न्यूज पोर्टल</span>
-            </div>
-
-            <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3>
-            <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p>
-            <a asp-controller="News" asp-action="Details" asp-route-id="2">Read more</a>
-        </article>
-        <article class="news-article">
-            <div class="title-container">
-                <div class="vertical-line"></div>
-                <span class="title-text">खेल</span>
-            </div>
-            <img src="~/images/logo1.png" alt="News Image" class="news-image">
-            <div class="title-container">
-                <span>February 5,2025</span>
-                <div class="vertical-line-blue"></div>
-                <span>पर्वत पियुश न्यूज पोर्टल</span>
-            </div>
-            <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3>
-            <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p>
-            <a asp-controller="News" asp-action="Details" asp-route-id="2">Read more</a>
-        </article>
-    </section>
+    <!-- Carousel Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
 </div>
+    <!-- News Cards -->
+    <div class="container mt-4">
+    <div class="row">
+        <!-- Left Large Card -->
+        <div class="col-md-6 d-flex"> 
+           <div class="news-card position-relative equal-height"> 
+                 <div class="topic">राजनीति</div> 
+                 <img src="~/images/news1.jpg" alt="News Image">  
+                @* <img src="https://picsum.photos/id/239/200" alt="News Image"> *@
+                 <div class="date">Feb 27, 2025</div> 
+                 <div class="headline">राज्य सरकार ने जन भावनाओं के अनुरूप भू सुधारों की नींव रखी : सीएम</div> 
+             </div> 
+         </div>
+         
+         
+        <!-- Right four Stacked Cards -->
+        <div class="col-md-3 d-flex flex-column">
+            <div class="news-card position-relative right-card">
+                <div class="topic">उत्तराखंड</div>
+                <img src="~/images/news_2.jpg" alt="News Image">
+                @* <img src="https://picsum.photos/id/239/100" alt="News Image"> *@
+                <div class="date">Feb 27, 2025</div>
+                <div class="headline">उत्तराखण्ड के रजत जयंती वर्ष में ऐतिहासिक बजट पेश हुआ : सीएम</div>
+            </div>
 
- <script>
-        const slider = document.querySelector('.slider');
-        let index = 0;
-        const totalSlides = document.querySelectorAll('.slide').length;
-        function autoScroll() {
-            index++;
-            if (index >= totalSlides) {
-                index = 0;
-            }
-            updateSlidePosition();
-        }
-        function updateSlidePosition() {
-            slider.style.transform = `translateX(-${index * 100}%)`;
-        }
-        function prevSlide() {
-            index--;
-            if (index < 0) {
-                index = totalSlides - 1;
-            }
-            updateSlidePosition();
-        }
-        function nextSlide() {
-            index++;
-            if (index >= totalSlides) {
-                index = 0;
-            }
-            updateSlidePosition();
-        }
-        setInterval(autoScroll, 30000);
-</script>
+            <div class="news-card position-relative right-card">
+                <div class="topic">राजनीति</div>
+                 <img src="~/images/news_3.jpg" alt="News Image"> 
+                @* <img src="https://picsum.photos/id/239/100" alt="News Image"> *@
+                <div class="date">Feb 27, 2025</div>
+                <div class="headline">डाॅ मायाराम उनियाल को केंद्रीय आयुष मंत्रालय ने प्रदान किया प्रतिष्ठित धन्वंतरी पुरस्कार</div>
+            </div>
+        </div>
+        <div class="col-md-3 d-flex flex-column">
+            <div class="news-card position-relative right-card">
+                <div class="topic">उत्तराखंड</div>
+                <img src="~/images/news_2.jpg" alt="News Image">
+                @* <img src="https://picsum.photos/id/239/100" alt="News Image"> *@
+                <div class="date">Feb 27, 2025</div>
+                <div class="headline">उत्तराखण्ड के रजत जयंती वर्ष में ऐतिहासिक बजट पेश हुआ : सीएम</div>
+            </div>
 
+            <div class="news-card position-relative right-card">
+                <div class="topic">राजनीति</div>
+                <img src="~/images/news_3.jpg" alt="News Image">
+                @* <img src="https://picsum.photos/id/239/100" alt="News Image"> *@
+                <div class="date">Feb 27, 2025</div>
+                <div class="headline">डाॅ मायाराम उनियाल को केंद्रीय आयुष मंत्रालय ने प्रदान किया प्रतिष्ठित धन्वंतरी पुरस्कार</div>
+            </div>
+        </div>
 
+    </div>
+    </div>
+    <div class="container">
+        <div class="row">
+                <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="~/images/news_3.jpg" class="img-fluid rounded-start" alt="news">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">राजनीति</h5>
+                                        <p class="card-text">दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</p>
+                                        <p class="card-text"><small class="text-body-secondary">Feb 27, 2025</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="~/images/news_3.jpg" class="img-fluid rounded-start" alt="news">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">राजनीति</h5>
+                                    <p class="card-text">दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</p>
+                                    <p class="card-text"><small class="text-body-secondary">Feb 27, 2025</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+                <div class="col-md-6">
+                <img src="~/images/ads1.png" class="img-fluid rounded" alt="Advertisement">
+                </div>
+
+        </div>
+    </div>
+    <section class="main-content"> 
+        <article class="news-article"> 
+             <div class="title-container"> 
+             @* <div class="vertical-line"></div>  *@
+                 <span class="title-text">राजनीति</span> 
+            </div> 
+             <img src="~/images/news_3.jpg" alt="news image" class="news-image"> 
+             <div class="title-container"> 
+                 <span>february 5,2025</span> 
+                 <div class="vertical-line-blue"></div>
+             <span>पर्वत पीयूष न्यूज पोर्टल</span> 
+             </div> 
+             <h3>दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</h3> 
+             @* <p> 70 विधानसभा सीटों पर 699 उम्मीदवारों की किस्मत का फैसला 1.56 करोड़ मतदाता करेंगे। 13,766 मतदान केंद्रों पर सुबह सात बजे से शाम छह बजे तक मतदान होगा। </p> *@ 
+             @* <a asp-controller="news" asp-action="details" asp-route-id="1">read more</a>  *@
+         </article> 
+
+         <article class="news-article"> 
+             <div class="title-container"> 
+           @* <div class="vertical-line"></div>  *@
+               <span class="title-text">खेल</span> 
+             </div>
+        <img src="~/images/news_3.jpg" alt="news image" class="news-image">
+        <div class="title-container"> 
+                 <span>february 5,2025</span> 
+                 <div class="vertical-line-blue"></div> 
+                 <span>पर्वत पीयूष न्यूज पोर्टल</span> 
+             </div> 
+
+             <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3> 
+             @* <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p> *@ 
+            @* <a asp-controller="news" asp-action="details" asp-route-id="2">read more</a> *@ 
+
+         </article> 
+         <article class="news-article"> 
+             <div class="title-container"> 
+                 @* <div class="vertical-line"></div>  *@
+                 <span class="title-text">खेल</span> 
+             </div>
+        <img src="~/images/news_3.jpg" alt="news image" class="news-image">
+        <div class="title-container"> 
+                 <span>february 5,2025</span> 
+                 <div class="vertical-line-blue"></div> 
+                 <span>पर्वत पीयूष न्यूज पोर्टल</span> 
+             </div> 
+
+            <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3> 
+            @* <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p>  *@
+            @* <a asp-controller="news" asp-action="details" asp-route-id="2">read more</a>  *@
+         </article> 
+      <article class="news-article"> 
+            <div class="title-container"> 
+                 @* <div class="vertical-line"></div>  *@
+                 <span class="title-text">खेल</span> 
+             </div>
+        <img src="~/images/news_3.jpg" alt="news image" class="news-image">
+        <div class="title-container"> 
+                 <span>february 5,2025</span> 
+                 <div class="vertical-line-blue"></div> 
+                 <span>पर्वत पीयूष न्यूज पोर्टल</span> 
+             </div> 
+            <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3> 
+             @* <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p>  *@
+             @* <a asp-controller="news" asp-action="details" asp-route-id="2">read more</a>  *@
+        </article>
+    </section> 

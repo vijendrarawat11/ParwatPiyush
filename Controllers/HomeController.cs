@@ -8,20 +8,11 @@ namespace ParwatPiyushNewsPortal.Controllers
 {
     public class HomeController : Controller
     {
-        //private readonly ILogger<HomeController> _logger;
         private readonly ParwatPiyushDB _context;
-
-        //public HomeController(ILogger<HomeController> logger)
-        //{
-        //    _logger = logger;
-        //}
-        
-
         public HomeController(ParwatPiyushDB context)
         {
             _context = context;
         }
-
         public IActionResult Index()
         {
             var newsList = _context.News
@@ -32,7 +23,6 @@ namespace ParwatPiyushNewsPortal.Controllers
 
             return View(newsList);
         }
-
         public IActionResult Privacy()
         {
             return View();

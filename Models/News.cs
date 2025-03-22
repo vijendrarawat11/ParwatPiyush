@@ -22,5 +22,7 @@ namespace ParwatPiyushNewsPortal.Models
         [ForeignKey("TopicId")]
         public Topics? Topic { get; set; }
 
+        public string? CreatedBy { get; set; }
+
     }
 }

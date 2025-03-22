@@ -7,21 +7,22 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ParwatPiyushNewsPortal.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="header">
-            <div class="logo">पर्वत पियुश न्यूज पोर्टल</div>
+            <div class="logo">पर्वत पीयूष न्यूज पोर्टल</div>
             <div class="ads">
                 <!-- Ad Space -->
-                <img src="~/images/logo1.png" alt="Advertisement">
+                <img src="~/images/ads.webp" alt="Advertisement">
             </div>
         </div>
       
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3" style="background-color:#C80000;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">पर्वत पियुश न्यूज पोर्टल</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">पर्वत पीयूष न्यूज पोर्टल</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -71,6 +72,25 @@
                 </div>
             </div>
         </nav>
+     <div class="container">
+    <!-- News Ticker -->
+  <div class="row align-items-center news-container">
+    <span class="col-lg-2 col-md-3 col-sm-4 news-ticker-container">
+                    ब्रेकिंग न्यूज
+        </span>
+                <div class="col-lg-10 col-md-9 col-sm-8 news-ticker-wrapper">
+                    <div class="news-ticker">
+           <ul id="newsTicker">
+                <li><a href="#">डाॅ मायाराम उनियाल को केंद्रीय आयुष मंत्रालय ने प्रदान किया प्रतिष्ठित धन्वंतरी पुरस्कार</a></li>
+                <li><a href="#">चारधाम मंदिरों की पूजा का लाइव प्रसारण नहीं ! हरेला की रही धूम</a></li>
+                <li><a href="#">गायिका सुनिधि चौहान के गीतों का जादू दर्शकों के सिर चढ़कर बोला</a></li>
+                <li><a href="#">खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</a></li>
+       
+            </ul>
+        </div>
+    </div>
+    </div>
+    </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -78,42 +98,77 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            @* <div class="container-fluid"> *@
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 text-center">
-                        <h3>अन्य विषय</h3>
-                        <ul>  
-                            <li>पर्यावरण</li>
-                            <li>फैशन</li>
-                            <li>प्रेरणा</li>
-                            <li>अपराध</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4 text-center">
-                        <h3>शहर समाचार </h3>
-                        <ul>
-                            <li>देहरादुन</li>
-                            <li> हरिद्वार </li>
-                            <li>हल्दवानी</li>
-                            <li> ऋषिकेश</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4 text-center">
-                        <h3>पर्वत पियुश न्यूज </h3>
-                        <p>उत्तराखंड का सबसे विश्वसनीय न्यूज़ पोर्टल</p>
-                        <p>पता: देहरादून, उत्तराखंड - 123456</p>
-                        <p>Phone:<span>+91 123456789</span></p>
-                        <p>Email:<span>parwatpiyush@gmail.com</span></p>
-                    </div>
-                </div>
-            @* </div> *@
-        </div>
-    </footer>
+     <footer class="border-top footer text-muted"> 
+        <div class="container"> 
+              <div class="container-fluid"> 
+                 <div class="row"> 
+                     <div class="col-lg-4 col-md-4 text-center"> 
+                         <h3>अन्य विषय</h3> 
+                         <ul>   
+                             <li>पर्यावरण</li> 
+                             <li>फैशन</li> 
+                             <li>प्रेरणा</li> 
+                             <li>अपराध</li> 
+                         </ul> 
+                     </div> 
+                     <div class="col-lg-4 col-md-4 text-center"> 
+                         <h3>शहर समाचार </h3> 
+                         <ul> 
+                             <li>देहरादुन</li> 
+                             <li> हरिद्वार </li> 
+                             <li>हल्दवानी</li> 
+                             <li> ऋषिकेश</li> 
+                         </ul> 
+                     </div> 
+                     <div class="col-lg-4 col-md-4 text-center"> 
+                         <h3>पर्वत पीयूष न्यूज </h3> 
+                         <p>उत्तराखंड का सबसे विश्वसनीय न्यूज़ पोर्टल</p> 
+                         <p>पता: देहरादून, उत्तराखंड - 123456</p> 
+                        <p>Phone:<span>+91 123456789</span></p> 
+                         <p>Email:<span>parwatpiyush@gmail.com</span></p> 
+                    </div> 
+                </div> 
+              </div> 
+         </div> 
+     </footer> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    
+
+
+ <script>
+        // JavaScript for Smooth News Ticker
+// setTimeout(() => {
+//     const ticker = document.getElementById("newsTicker");
+//     if (!ticker) return; Prevents crash if still missing
+//     const items = ticker.children;
+//     let totalWidth = 0;
+
+//     Clone ticker items
+//     for (let i = 0; i < items.length; i++) {
+//         let clone = items[i].cloneNode(true);
+//         ticker.appendChild(clone);
+//         totalWidth += items[i].offsetWidth + 30;
+//     }
+
+//     ticker.style.width = totalWidth + "px";
+
+//     let tickerPosition = 0;
+//     function moveTicker() {
+//         tickerPosition -= 1;
+//         if (Math.abs(tickerPosition) >= totalWidth / 2) {
+//             tickerPosition = 0;
+//         }
+//         ticker.style.transform = `translateX(${tickerPosition}px)`;
+//         requestAnimationFrame(moveTicker);
+//     }
+
+//     moveTicker();
+// }, 5000); Waits 500ms before running
+
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -7,8 +7,6 @@ using System.Diagnostics;
 
 namespace ParwatPiyushNewsPortal.Controllers
 {
-    //[Authorize(Roles = "Admin,Author")]
-    //[Authorize(Roles = "Admin")]
     [Authorize]
     public class AuthorController : Controller
     {
@@ -19,16 +17,7 @@ namespace ParwatPiyushNewsPortal.Controllers
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-        //public IActionResult CreateNews() => View();
-        //[Authorize(Roles = "Admin")]
-        //public IActionResult CreateNews()
-        //{
-        //    return View();
-        //}
+       
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult CreateNews()
@@ -50,88 +39,7 @@ namespace ParwatPiyushNewsPortal.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult CreateNews(News news)
-        //{
-        //    news.AuthorId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-        //    _context.News.Add(news);
-        //    _context.SaveChanges();
-        //    return RedirectToAction("Index", "Home");
-        //}
-        //[Authorize(Roles = "Admin")]
-        //[HttpPost]
-        //public IActionResult CreateNews(News news)
-        //{
-        //    try
-        //    {
-        //        Debug.WriteLine("Attempting to save news...");
-
-        //        if (!ModelState.IsValid)
-        //        {
-        //            Debug.WriteLine("❌ ModelState is invalid! Listing errors:");
-
-        //            foreach (var modelError in ModelState)
-        //            {
-        //                foreach (var error in modelError.Value.Errors)
-        //                {
-        //                    Debug.WriteLine($"🔴 {modelError.Key}: {error.ErrorMessage}");
-        //                }
-        //            }
-
-        //            return View(news); // Return the same form with errors
-        //        }
-
-        //        // Ensure AuthorId is set
-        //        var authorId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //        if (string.IsNullOrEmpty(authorId))
-        //        {
-        //            Debug.WriteLine("❌ AuthorId is NULL. Cannot save news.");
-        //            return View(news);
-        //        }
-
-        //        news.AuthorId = int.Parse(authorId);
-        //        news.PublishedDate = DateTime.Now;
-
-        //        _context.News.Add(news);
-        //        _context.SaveChanges(); // Try saving to DB
-
-        //        Debug.WriteLine("✅ News saved successfully!");
-
-        //        return RedirectToAction("Index", "Home");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Debug.WriteLine("❌ Error saving news: " + ex.Message);
-        //        Debug.WriteLine("StackTrace: " + ex.StackTrace);
-        //        return View(news); // Return view with error message
-        //    }
-        //}
-
-
-        //public async Task<IActionResult> CreateNews(News news, IFormFile ImageFile)
-        //{
-        //    if (ImageFile != null && ImageFile.Length > 0)
-        //    {
-        //        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
-        //        Directory.CreateDirectory(uploadsFolder); // Ensure directory exists
-
-        //        string uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
-        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-        //        using (var fileStream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            await ImageFile.CopyToAsync(fileStream);
-        //        }
-
-        //        news.ImagePath = "/uploads/" + uniqueFileName; // Store relative path
-        //    }
-
-        //    news.AuthorId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-        //    _context.News.Add(news);
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToAction("Index", "Home");
-        //}
+       
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> CreateNews(News news, IFormFile ImageFile)
@@ -181,14 +89,31 @@ namespace ParwatPiyushNewsPortal.Controllers
                 Debug.WriteLine("No image uploaded, setting default image.");
                // news.ImagePath = "/uploads/default.jpg"; // Assign a default image if none uploaded
             }
-            news.PublishedDate = DateTime.Now;
-            news.AuthorId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            _context.News.Add(news);
-            _context.SaveChanges();
-            await _context.SaveChangesAsync();
+            var username = User.Identity.Name;
+            var user = _context.Users.FirstOrDefault(u => u.Username == username);
 
-            Debug.WriteLine("News saved successfully!");
-            return RedirectToAction("Index", "Home");
+           
+            if (user != null)
+            {
+                news.PublishedDate = DateTime.Now;
+                //news.AuthorId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+                news.AuthorId = user.Id;
+                news.CreatedBy = user.Username; 
+                _context.News.Add(news);
+                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("", "User not found. Please log in again.");
+            }
+        
+
+              return View(news);
+
+            //Debug.WriteLine("News saved successfully!");
+            //return RedirectToAction("Index", "Home");
         }
 
     }

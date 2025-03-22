@@ -24,11 +24,6 @@ namespace ParwatPiyushNewsPortal.Controllers
         public async Task<IActionResult> Login(string username, string password)
         {
             var user = _context.Users.SingleOrDefault(u => u.Username == username);
-            //if (user == null || user.PasswordHash != password)
-            //{
-            //    ViewBag.Message = "Invalid login!";
-            //    return View();
-            //}
             Debug.WriteLine("User Input - Username: " + username);
             Debug.WriteLine("User Input - Password: " + password);
             if (user == null)

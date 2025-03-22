@@ -6,7 +6,9 @@ html, body {
 html {
   font-size: 14px;
 }
-
+.container {
+    margin-bottom: 10px !important;
+}
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -27,24 +29,14 @@ html {
     font-weight: bold;
     color: white !important;
 }
-   .navbar-nav .nav-link:hover {
-    color: #ffc107 !important; 
-}
-/*
-html {
-  position: relative;
-  min-height: 100%;
-}
+    .navbar-nav .nav-link:hover {
+        color: #F0AFB5 !important;
+    }
 
-body {
-  margin-bottom: 60px;
-}
-*/
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: cadetblue;
     padding: 10px 20px;
     color: white;
 }
@@ -52,6 +44,7 @@ body {
 .logo {
     font-size: 30px;
     font-weight: bold;
+    color: #C80000;
 }
 
 .ads {
@@ -67,12 +60,11 @@ body {
 
 .footer {
     position: relative !important;
-/*    background: black;*/
-    color: white;
-    /*    padding: 10px;*/
-    display: grid;
+    /*    background: black;*/
+    /*color: white;*/
+    /*display: grid;*/
     /*    grid-template-columns: repeat(3, 1fr);*/
-    width: 100%; 
+   width: 100%; 
     background-color:black; 
     padding: 20px 0;
 }
@@ -82,16 +74,16 @@ body {
         text-decoration: none;
         transition: color 0.3s ease-in-out;
     }
-/*        .footer a:hover {
-        color: #ffc107 !important; 
-        text-decoration: underline; 
-    }*/
-
+        .footer a:hover {
+            color: #F0AFB5 !important;
+            text-decoration: underline;
+        }
     .footer h3 {
         margin-bottom: 10px;
         text-align: left;
-        font-size: 45px;
+        font-size: 30px !important;
         padding: 15px;
+        color: aliceblue;
     }
 
     .footer ul {
@@ -103,6 +95,7 @@ body {
             margin: 5px 0;
             text-align: left;
             font-size: 16px;
+            color: aliceblue;
         }
 
             .footer ul li a {
@@ -110,31 +103,33 @@ body {
                 color: #ccc;
             }
             .footer ul li:hover {
-                color: #ffc107; 
-                cursor: pointer; 
+                color: #F0AFB5;
+                cursor: pointer;
             }
     .footer .container,
     .footer .container-fluid {
         max-width: 100%; 
         width: 100%;
-/*        padding: 0 15px; */
-        margin: 0 auto;
+    /*        padding: 0 15px; */
+    margin: 0 auto;
     }
     .footer .row {
         margin: 0;
-        width: 100%;
+    /*        width: 100%;*/
     }
 
-
+    .footer p{
+        font-size:16px;
+        color:aliceblue;
+    }
 @media (max-width: 600px) {
     .navbar{
         width:100%;
     }
     .header {
-        /*        flex-direction: column;*/
         text-align: center;
-/*                display: inline-block;*/
-        display: flex;
+    /*                display: inline-block;*/
+    display: flex;
         flex-direction: column;
     }
 
@@ -152,44 +147,43 @@ body {
             text-align: center;
             font-size: 30px;
             padding: 15px;
-            background-color: black;
+/*            background-color: black;*/
+/*            color: aliceblue;*/
         }
     .footer.container{
         width:100%;
     }
-/*        .footer .row {
+           .footer .row {
             margin: 0;
             width: 100%;
-        }*/
-
-}
-
-/* Main Content */
-.main-content {
+        }
+    }
+    /* Main Content */
+    .main-content {
     display: grid;
     grid-template-columns: auto auto;
-/*    grid-template-columns: repeat(3, 1fr);*/
+    /*    grid-template-columns: repeat(3, 1fr);*/
     gap: 20px;
     padding: 20px;
     flex: 1;
 }
-.news-image {
+    .news-image {
     display: block;
     width: 100%; 
     max-width: 600px;
     margin-bottom: 30px; 
 }
+  
 .news-article {
     background: white;
     padding: 15px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
-
-/*    .news-article img {
+        .news-article img {
         width: 100%;
         height: auto;
     }
-*/
+
     .news article p{
         font-size:12px;
         margin:5px;
@@ -197,7 +191,7 @@ body {
     }
 
     .news article h3 {
-        font-size: 14px;
+        font-size: small;
         margin: 1.5rem;
         padding: 5px;
     }
@@ -210,27 +204,31 @@ body {
 }
 
 .vertical-line {
-    width: 4px;
-    height: 30px; 
+    width: 2px;
+    height: 20px; 
     background-color: red;
 }
 .vertical-line-blue {
-    width: 4px;
-    height: 30px;
-    background-color: blue;
+    width: 1px;
+    height: 20px;
+    background-color: red;
 }
 
 .title-text {
-    font-size: 18px;
+    /*    font-size: 18px;
     font-weight: bold;
-    color: black;
+    color: black;*/
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
 }
 
 .image-container {
     position: relative;
     text-align: center;
-/*    background: #f8f8f8;*/
-    padding: 15px;
+   padding: 15px;
 }
 .full-width-image {
     width: 100%;
@@ -238,8 +236,7 @@ body {
     border-bottom: 3px solid red;
 }
 .text-overlay {
-/*    position: absolute;*/
-    position:static;
+     position:static;
     bottom: 10px;
     left: 10px;
     color: black;
@@ -266,8 +263,7 @@ body {
     }
 
     .title-container {
-/*        flex-direction: column;*/
-        align-items: flex-start;
+    align-items: flex-start;
     }
 
     h3 {
@@ -353,3 +349,230 @@ h3{
     .prev-btn:hover, .next-btn:hover {
         background-color: red;
     }
+    
+ /* Container to keep everything in the same row */
+    .news-container {
+/*    display: flex;*/
+    display:ruby;
+    align-items: center; /* Align text and ticker on the same line */
+    white-space: nowrap;
+    overflow: hidden;
+    background: #f8d7da; /* Light red background */
+    padding: 10px 0;
+}
+
+/* "Breaking News" section */
+.news-ticker-container {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d9534f; /* Bootstrap danger red */
+    padding-right: 10px;
+    text-align: center;
+}
+
+/* Wrapper to prevent text wrapping */
+.news-ticker-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Ticker scrolling effect */
+.news-ticker {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+    /* News items */
+    .news-ticker ul {
+        display: flex; /* Force items into a single row */
+        align-items: center; /* Center items vertically */
+        gap: 50px; /* Space between news items */
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        white-space: nowrap; /* Prevent line breaks */
+        
+    }
+
+
+    /* Individual news items */
+    .news-ticker li {
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    /* Links */
+    .news-ticker a {
+        color: #333;
+        text-decoration: none;
+    }
+
+        .news-ticker a:hover {
+            text-decoration: underline;
+        }
+
+/* Card Styling */
+.news-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 15px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .news-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .news-card .topic {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: red;
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 5px;
+    }
+
+    .news-card img {
+        width: 100%;
+        height: 60%;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .news-card .date {
+        font-size: 12px;
+        color: gray;
+        margin-top: 5px;
+    }
+
+    .news-card .headline {
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 5px;
+        margin-bottom: 0; 
+    }
+/* Equal Heights */
+.equal-height {
+    display: flex;
+    flex-direction: column;
+    height: 84%;
+}
+
+.right-card {
+/*    flex: 1;*/
+    height: 42%;
+    width: 100%;
+}
+    .right-card img {
+        height: 60%;
+    }
+/* Card Styling news image */
+.news-card-img {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+    /* Topic Label */
+    .news-card-img .topic {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: red;
+        color: white;
+        padding: 5px 10px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    /* Image Styling */
+    .news-card-img img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+
+    /* Headline Over Image */
+    .news-card-img .headline {
+        position: absolute;
+        bottom: 50px;
+        left: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+    /* Date Below Image */
+    .news-card-img .date {
+        font-size: 14px;
+        color: gray;
+        margin-top: 10px;
+    }
+.carousel-item .card-img {
+    width: 100%; 
+    height: 500px; 
+    object-fit: cover; 
+}
+.carousel-control-prev, .carousel-control-next {
+    filter: invert(100%);
+}
+.carousel-control-next-icon, .carousel-control-prev-icon {
+    background-color: black !important;
+}
+    .card-title {
+    position: relative;
+    padding: 5px 15px;
+    background-color: rgba(255, 0, 0, 0.8);
+    /*    color: white;*/
+    display: inline-block;
+    border-radius: 5px;
+    font-size: small;
+}
+h5.card-title {
+    color: white;
+}
+/* Red Line Before Date */
+.date-text {
+    position: relative;
+    font-weight: bold;
+}
+
+    .date-text::before {
+        content: "";
+        position: absolute;
+        left: -20px; 
+        top: 50%;
+        width: 15px; 
+        height: 2px;
+        background-color: red;
+        transform: translateY(-50%);
+    }
+img.img-fluid.rounded-start {
+    height:130px;
+}
+@media (min-width: 1200px) {
+    .h3, h3 {
+        font-size: small !important;
+    }
+}

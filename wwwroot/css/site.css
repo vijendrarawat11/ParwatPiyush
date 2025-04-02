@@ -541,9 +541,9 @@ h3{
     background-color: black !important;
 }
     .card-title {
-    position: relative;
-    padding: 5px 15px;
-    background-color: rgba(255, 0, 0, 0.8);
+/*    position: relative;*/
+/*    padding: 5px 15px;*/
+/*    background-color: rgba(255, 0, 0, 0.8);*/
     /*    color: white;*/
     display: inline-block;
     border-radius: 5px;
@@ -575,4 +575,125 @@ img.img-fluid.rounded-start {
     .h3, h3 {
         font-size: small !important;
     }
+}
+
+
+
+
+.fixed-height {
+    width: 100%;
+    height: 110px; 
+    object-fit: cover; 
+}
+
+.fixed-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.news-link, .topic-link {
+    text-decoration: none; 
+    color: black; 
+    font-weight: bold;
+}
+    .news-link:hover, .topic-link:hover {
+        text-decoration: underline;
+        color: blue; 
+    }
+
+.topic-link-1 {
+    text-decoration: none; 
+    color: white; 
+    font-weight: bold;
+}
+.topic-link:hover {
+    text-decoration: underline;
+    color: blue; 
+}
+/* Ensures all card images are the same height */
+.card-img-top {
+    height: 200px; /* Adjust this to match slider height */
+    object-fit: cover;
+}
+
+/* Make sure the slider height matches the cards */
+#newsSlider .carousel-inner {
+    height: 350px; /* Same as fixed-height */
+}
+
+#newsSlider .carousel-item {
+    height: 100%;
+}
+
+/* Ensure slider images fill their container */
+#newsSlider img {
+    height: 100%;
+    object-fit: fill;
+}
+
+.card-overlay {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.topic-bg {
+    background: red;
+    color: white;
+    font-weight: bold;
+}
+.mb-3 {
+    margin-bottom: 15px;
+}
+.content-overlay {
+    background: rgba(0, 0, 0, 0.6); /* Dark background for readability */
+    width: 100%;
+}
+.card-img-left {
+    /*height: 100%;*/ /* Make image height match card */
+    object-fit: contain;
+    height:100px;
+    width:100px;
+}
+
+.card-img-left-1 {
+    width: 30%; /* Image takes 30% space */
+    height: 120px; /* Fixed height */
+    object-fit: cover; /* Ensures image scales properly */
+}
+
+.card-body {
+    width: 70%; /* Text takes 70% space */
+}
+
+.vertical-line {
+    width: 4px;
+    height: 30px; 
+    background-color: red; 
+    border-left: 3px solid red;
+    margin-right: 10px;
+}
+
+/*.topic-heading {
+    margin-left: 15px; 
+    padding-left: 15px; 
+}*/
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body {
+    flex-grow: 1; /* Ensures the text area takes remaining space */
+}
+
+/* Ensure cards in right column have equal height */
+.col-md-6 {
+    display: flex;
+    flex-direction: column;
 }

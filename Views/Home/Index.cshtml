@@ -1,269 +1,368 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@* <div class="text-center"> *@
-@*       @model List<ParwatPiyushNewsPortal.Models.News> *@
+@{
+    var latestNews = ViewBag.LatestNews as List<News>;
+    var newsByTopic = ViewBag.NewsByTopic as Dictionary<string, List<News>>;
+    var stateNews = newsByTopic.ContainsKey("State") ? newsByTopic["State"].Take(2).ToList() : new List<News>();
+    var politicsNews = newsByTopic.ContainsKey("Politics") ? newsByTopic["Politics"].Take(2).ToList() : new List<News>();
+    var countryNews = newsByTopic.ContainsKey("देश-विदेश") ? newsByTopic["देश-विदेश"].OrderByDescending(n => n.PublishedDate).Take(4).ToList() : new List<News>();
+    var religionNews = newsByTopic.ContainsKey("धर्म") ? newsByTopic["धर्म"].OrderByDescending(n => n.PublishedDate).FirstOrDefault() : null;
+    var fashionNews = newsByTopic.ContainsKey("फैशन") ? newsByTopic["फैशन"].OrderByDescending(n => n.PublishedDate).Take(4).ToList() : new List<News>();
+    var sportsNews = newsByTopic.ContainsKey("खेल") ? newsByTopic["खेल"].OrderByDescending(n => n.PublishedDate).FirstOrDefault() : null;
+    var crimeNews = newsByTopic.ContainsKey("अपराध") ? newsByTopic["अपराध"].OrderByDescending(n => n.PublishedDate).Take(4).ToList() : new List<News>();
+    var heritageNews = newsByTopic.ContainsKey("विरासत") ? newsByTopic["विरासत"].OrderByDescending(n => n.PublishedDate).Take(1).ToList(): new List<News>();
+    var jobNews = newsByTopic.ContainsKey("नौकरशाही") ? newsByTopic["नौकरशाही"].OrderByDescending(n => n.PublishedDate).Take(4).ToList() : new List<News>();
+}
 
-@*         <h2>Latest News</h2> *@
-@*         @foreach (var news in Model) *@
-@*         { *@
-@*             <section class="main-content"> *@
-@*                 <article class="news-article"> *@
-@*             <div class="title-container"> *@
-@*                 <div class="vertical-line"></div> *@
-@*                     <span class="title-text">@(news.Topic != null ? news.Topic.Name : "No Topic")</span> *@
-@*             </div> *@
-@*              @if (!string.IsNullOrEmpty(news.ImagePath))  *@
-@*                  {  *@
-@*                      <img src="@news.ImagePath" alt="News Image" width="200">  *@
-@*                  } *@
-@*             <div class="title-container"> *@
-@*                 <span>@news.PublishedDate.ToString("MMMM dd, yyyy")</span> *@
-@*                 <div class="vertical-line-blue"></div> *@
-@*                     <span>@(news.Author != null ? news.Author.Username : "Unknown Author")</span> *@
-@*                     <div class="vertical-line-blue"></div> *@
-@*                     <span>@news.CreatedBy</span> *@
-@*                 </div> *@
-@*                 <a asp-controller="News" asp-action="Details" asp-route-id="2">Read more</a> *@
-@*             </article> *@
-@*             </section> *@
-           
-@*         } *@
-<div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <!-- Card 1 -->
-        <div class="carousel-item active">
-            <div class="card text-bg-dark position-relative">
-                <img src="~/images/news_3.jpg" class="card-img" alt="news">
-                <div class="card-img-overlay d-flex flex-column justify-content-between">
-                    <h5 class="card-title position-absolute top-0 start-0 m-3 fw-bold">राजनीति</h5>
-                    <div class="position-absolute bottom-0 start-0 m-3">
-                        <p class="card-text fw-bold mb-1">राज्य सरकार ने जन भावनाओं के अनुरूप भू सुधारों की नींव रखी : सीएम</p>
-                        <p class="card-text fw-bold"><small>Feb 27, 2025</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<<!-- First Row: Slider + Small News Cards -->
+<div class="row">
+    <!-- News Slider (col-lg-8) -->
+    <div class="col-lg-8">
+        <div id="newsSlider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach (var news in latestNews)
+                {
+                    <div class="carousel-item @(news == latestNews.First() ? "active" : "")">
+                        <div class="position-relative">
+                            <img src="@news.ImagePath" class="d-block w-100 fixed-height" alt="News Image">
 
-        <!-- Card 2 -->
-        <div class="carousel-item">
-            <div class="card text-bg-dark position-relative">
-                <img src="~/images/news_2.jpg" class="card-img" alt="news">
-                <div class="card-img-overlay d-flex flex-column justify-content-between">
-                    <h5 class="card-title position-absolute top-0 start-0 m-3 fw-bold">अर्थव्यवस्था</h5>
-                    <div class="position-absolute bottom-0 start-0 m-3">
-                        <p class="card-text fw-bold mb-1">नई आर्थिक नीति से देश की GDP में सुधार</p>
-                        <p class="card-text fw-bold"><small>Feb 26, 2025</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <!-- Topic (Top-Left) -->
+                            <h5 class="position-absolute top-0 start-0 p-2 text-white topic-bg">
+                                @news.Topic.Name
+                            </h5>
 
-        <!-- Card 3 -->
-        <div class="carousel-item">
-            <div class="card text-bg-dark position-relative">
-                <img src="~/images/news_3.jpg" class="card-img" alt="news">
-                <div class="card-img-overlay d-flex flex-column justify-content-between">
-                    <h5 class="card-title position-absolute top-0 start-0 m-3 fw-bold">खेल</h5>
-                    <div class="position-absolute bottom-0 start-0 m-3">
-                        <p class="card-text fw-bold mb-1">भारतीय टीम ने वर्ल्ड कप में शानदार प्रदर्शन किया</p>
-                        <p class="card-text fw-bold"><small>Feb 25, 2025</small></p>
+                            <!-- News Content (Bottom-Left) -->
+                                <div class="position-absolute bottom-0 start-0 p-2 text-white bg-dark bg-opacity-75 w-100 content-overlay">
+                                <p class="mb-1">@news.PublishedDate.ToShortDateString()</p>
+                                <h6 class="fw-bold">
+                                    <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Content</a>
+                                </h6>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
-        </div>
 
-        <!-- Card 4 -->
-        <div class="carousel-item">
-            <div class="card text-bg-dark position-relative">
-                <img src="~/images/news1.jpg" class="card-img" alt="news">
-                <div class="card-img-overlay d-flex flex-column justify-content-between">
-                    <h5 class="card-title position-absolute top-0 start-0 m-3 fw-bold">मनोरंजन</h5>
-                    <div class="position-absolute bottom-0 start-0 m-3">
-                        <p class="card-text fw-bold mb-1">नई फिल्म ने बॉक्स ऑफिस पर मचाया धमाल</p>
-                        <p class="card-text fw-bold"><small>Feb 24, 2025</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 5 -->
-        <div class="carousel-item">
-            <div class="card text-bg-dark position-relative">
-                <img src="~/images/news_2.jpg" class="card-img" alt="news">
-                <div class="card-img-overlay d-flex flex-column justify-content-between">
-                    <h5 class="card-title position-absolute top-0 start-0 m-3 fw-bold">विज्ञान</h5>
-                    <div class="position-absolute bottom-0 start-0 m-3">
-                        <p class="card-text fw-bold mb-1">नए रिसर्च से मेडिकल क्षेत्र में क्रांति</p>
-                        <p class="card-text fw-bold"><small>Feb 23, 2025</small></p>
-                    </div>
-                </div>
-            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#newsSlider" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#newsSlider" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
         </div>
     </div>
 
-    <!-- Carousel Controls -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </button>
-</div>
-    <!-- News Cards -->
-    <div class="container mt-4">
-    <div class="row">
-        <!-- Left Large Card -->
-        <div class="col-md-6 d-flex"> 
-           <div class="news-card position-relative equal-height"> 
-                 <div class="topic">राजनीति</div> 
-                 <img src="~/images/news1.jpg" alt="News Image">  
-                @* <img src="https://picsum.photos/id/239/200" alt="News Image"> *@
-                 <div class="date">Feb 27, 2025</div> 
-                 <div class="headline">राज्य सरकार ने जन भावनाओं के अनुरूप भू सुधारों की नींव रखी : सीएम</div> 
-             </div> 
-         </div>
-         
-         
-        <!-- Right four Stacked Cards -->
-        <div class="col-md-3 d-flex flex-column">
-            <div class="news-card position-relative right-card">
-                <div class="topic">उत्तराखंड</div>
-                <img src="~/images/news_2.jpg" alt="News Image">
-                @* <img src="https://picsum.photos/id/239/100" alt="News Image"> *@
-                <div class="date">Feb 27, 2025</div>
-                <div class="headline">उत्तराखण्ड के रजत जयंती वर्ष में ऐतिहासिक बजट पेश हुआ : सीएम</div>
-            </div>
-
-            <div class="news-card position-relative right-card">
-                <div class="topic">राजनीति</div>
-                 <img src="~/images/news_3.jpg" alt="News Image"> 
-                @* <img src="https://picsum.photos/id/239/100" alt="News Image"> *@
-                <div class="date">Feb 27, 2025</div>
-                <div class="headline">डाॅ मायाराम उनियाल को केंद्रीय आयुष मंत्रालय ने प्रदान किया प्रतिष्ठित धन्वंतरी पुरस्कार</div>
-            </div>
-        </div>
-        <div class="col-md-3 d-flex flex-column">
-            <div class="news-card position-relative right-card">
-                <div class="topic">उत्तराखंड</div>
-                <img src="~/images/news_2.jpg" alt="News Image">
-                @* <img src="https://picsum.photos/id/239/100" alt="News Image"> *@
-                <div class="date">Feb 27, 2025</div>
-                <div class="headline">उत्तराखण्ड के रजत जयंती वर्ष में ऐतिहासिक बजट पेश हुआ : सीएम</div>
-            </div>
-
-            <div class="news-card position-relative right-card">
-                <div class="topic">राजनीति</div>
-                <img src="~/images/news_3.jpg" alt="News Image">
-                @* <img src="https://picsum.photos/id/239/100" alt="News Image"> *@
-                <div class="date">Feb 27, 2025</div>
-                <div class="headline">डाॅ मायाराम उनियाल को केंद्रीय आयुष मंत्रालय ने प्रदान किया प्रतिष्ठित धन्वंतरी पुरस्कार</div>
-            </div>
-        </div>
-
-    </div>
-    </div>
-    <div class="container">
+    <!-- Small News Cards (col-lg-4) -->
+    <div class="col-lg-4">
         <div class="row">
-                <div class="col-md-6">
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="~/images/news_3.jpg" class="img-fluid rounded-start" alt="news">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">राजनीति</h5>
-                                        <p class="card-text">दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</p>
-                                        <p class="card-text"><small class="text-body-secondary">Feb 27, 2025</small></p>
-                                    </div>
-                                </div>
-                            </div>
+            @foreach (var news in latestNews.Where(n => n.Topic.Name == "उत्तराखण्ड").Take(1))
+            {
+                <div class="col-6 mb-3">
+                    <div class="position-relative card-overlay">
+                        <img src="@news.ImagePath" class="card-img-top fixed-height" alt="News Image">
+
+                        <!-- Topic (Top-Left) -->
+                        <h6 class="position-absolute top-0 start-0 p-1 topic-bg">
+                            <a href="@Url.Action("Topic", "Home", new { name = news.Topic.Name })" class="text-white topic-link">@news.Topic.Name</a>
+                        </h6>
+
+                        <!-- News Content (Bottom-Left) -->
+                        <div class="position-absolute bottom-0 start-0 p-2 text-white bg-dark bg-opacity-75 w-100">
+                            <p class="mb-1">@news.PublishedDate.ToShortDateString()</p>
+                            <h6 class="fw-bold">
+                                <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Content</a>
+                            </h6>
                         </div>
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img src="~/images/news_3.jpg" class="img-fluid rounded-start" alt="news">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">राजनीति</h5>
-                                    <p class="card-text">दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</p>
-                                    <p class="card-text"><small class="text-body-secondary">Feb 27, 2025</small></p>
-                                </div>
+                    </div>
+                </div>
+            }
+
+            @foreach (var news in latestNews.Where(n => n.Topic.Name == "राजनीति").Take(1))
+            {
+                <div class="col-6 mb-3">
+                    <div class="position-relative card-overlay">
+                        <img src="@news.ImagePath" class="card-img-top fixed-height" alt="News Image">
+
+                        <!-- Topic (Top-Left) -->
+                        <h6 class="position-absolute top-0 start-0 p-1 topic-bg">
+                            <a href="@Url.Action("Topic", "Home", new { name = news.Topic.Name })" class="text-white topic-link">@news.Topic.Name</a>
+                        </h6>
+
+                        <!-- News Content (Bottom-Left) -->
+                        <div class="position-absolute bottom-0 start-0 p-2 text-white bg-dark bg-opacity-75 w-100">
+                            <p class="mb-1">@news.PublishedDate.ToShortDateString()</p>
+                            <h6 class="fw-bold">
+                                <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Content</a>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            }
+            @foreach (var news in latestNews.Where(n => n.Topic.Name != "उत्तराखण्ड" && n.Topic.Name != "राजनीति").Take(2))
+            {
+                <div class="col-lg-6 col-12 mb-3">
+                    <div class="position-relative card-overlay">
+                        <img src="@news.ImagePath" class="card-img-top fixed-height" alt="News Image">
+
+                        <!-- Topic (Top-Left) -->
+                        <h6 class="position-absolute top-0 start-0 p-1 topic-bg">
+                            <a href="@Url.Action("Topic", "Home", new { name = news.Topic.Name })" class="text-white topic-link">@news.Topic.Name</a>
+                        </h6>
+
+                        <!-- News Content (Bottom-Left) -->
+                        <div class="position-absolute bottom-0 start-0 p-2 text-white bg-dark bg-opacity-75 w-100">
+                            <p class="mb-1">@news.PublishedDate.ToShortDateString()</p>
+                            <h6 class="fw-bold">
+                                <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Content</a>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+<!-- News By Topic -->
+@* @foreach (var topic in newsByTopic.Keys) *@
+@* { *@
+@*           <h2><a href="@Url.Action("Topic", "Home", new { name = topic })" class="topic-link">@topic</a></h2>  *@
+@*     <div class="row"> *@
+@*         @foreach (var news in newsByTopic[topic]) *@
+@*         { *@
+@*             <div class="col-md-3"> *@
+@*                 <div class="card"> *@
+@*                             <img src="@news.ImagePath" class="card-img-top fixed-height" alt="News Image"> *@
+@*                     <div class="card-body"> *@
+@*                                  <p class="card-text">@news.PublishedDate.ToShortDateString()</p> *@
+@*                                 <h5 class="card-title">  <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a></h5> *@                     
+@*                         @* <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="btn btn-primary">Read More</a> *@ 
+@*                     </div> *@
+@*                 </div> *@
+@*             </div> *@
+@*         } *@
+@*     </div> *@
+@* } *@
+
+
+
+
+
+
+
+
+@if (countryNews.Any())
+{   <div class="d-flex align-items-center">
+    <!-- Red Vertical Line -->
+    <div class="vertical-line"></div>
+    <h2><a href="@Url.Action("Topic", "Home", new { name = "Country" })" class="topic-link">देश-विदेश</a></h2>
+    </div>
+    <div class="row">
+        @foreach (var news in countryNews)
+        {
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="@news.ImagePath" class="card-img-top fixed-height" alt="News Image">
+                    <div class="card-body">
+                        <p class="card-text">@news.PublishedDate.ToShortDateString()</p>
+                        <h5 class="card-title">
+                            <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+
+@if (religionNews != null)
+{   <div class="d-flex align-items-center">
+    <div class="vertical-line"></div>
+        <h2><a href="@Url.Action("Topic", "Home", new { name = "धर्म" })" class="topic-link">धर्म</a></h2>
+    </div>    
+<div class="row">
+        <div class="col-lg-6">
+            <div class="card d-flex flex-row align-items-center">
+                <!-- Image on the left -->
+                <img src="@religionNews.ImagePath" class="card-img-left fixed-height" alt="News Image" style="width: 50%; object-fit: cover;">
+
+                <!-- Text on the right -->
+                <div class="card-body">
+                    <p class="card-text">@religionNews.PublishedDate.ToShortDateString()</p>
+                    <h5 class="card-title">
+                        <a href="@Url.Action("Details", "Home", new { id = religionNews.Id })" class="news-link">@religionNews.Content</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty Space on Right -->
+        <div class="col-lg-6"></div>
+    </div>
+}
+
+@if (fashionNews.Any())
+{  
+    <div class="row mt-2">
+        @for (int i = 0; i < fashionNews.Count; i += 2)
+        {
+            <div class="row mb-2">
+                @for (int j = 0; j < 2 && i + j < fashionNews.Count; j++)
+                {
+                    var news = fashionNews[i + j];
+
+                    <div class="col-lg-3">
+                        <div class="card d-flex flex-row align-items-center">
+                            <!-- Image on the left (Smaller) -->
+                            <img src="@news.ImagePath" class="card-img-left-1" alt="News Image">
+
+                            <!-- Text on the right (Bigger) -->
+                            <div class="card-body">
+                                <span class="text-white topic-bg"><a href="@Url.Action("Topic", "Home", new { name = "Crime" })" class="topic-link-1">@news.Topic.Name</a></span>
+                                <p class="card-text">@news.PublishedDate.ToShortDateString()</p>
+                                <h5 class="card-title">
+                                    <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                                </h5>
                             </div>
                         </div>
                     </div>
-                 </div>
-                <div class="col-md-6">
-                <img src="~/images/ads1.png" class="img-fluid rounded" alt="Advertisement">
-                </div>
-
-        </div>
+                }
+            </div>
+        }
     </div>
-    <section class="main-content"> 
-        <article class="news-article"> 
-             <div class="title-container"> 
-             @* <div class="vertical-line"></div>  *@
-                 <span class="title-text">राजनीति</span> 
-            </div> 
-             <img src="~/images/news_3.jpg" alt="news image" class="news-image"> 
-             <div class="title-container"> 
-                 <span>february 5,2025</span> 
-                 <div class="vertical-line-blue"></div>
-             <span>पर्वत पीयूष न्यूज पोर्टल</span> 
-             </div> 
-             <h3>दिल्लीवासी बुधवार को अपनी सरकार चुनेंगे।</h3> 
-             @* <p> 70 विधानसभा सीटों पर 699 उम्मीदवारों की किस्मत का फैसला 1.56 करोड़ मतदाता करेंगे। 13,766 मतदान केंद्रों पर सुबह सात बजे से शाम छह बजे तक मतदान होगा। </p> *@ 
-             @* <a asp-controller="news" asp-action="details" asp-route-id="1">read more</a>  *@
-         </article> 
+}
 
-         <article class="news-article"> 
-             <div class="title-container"> 
-           @* <div class="vertical-line"></div>  *@
-               <span class="title-text">खेल</span> 
-             </div>
-        <img src="~/images/news_3.jpg" alt="news image" class="news-image">
-        <div class="title-container"> 
-                 <span>february 5,2025</span> 
-                 <div class="vertical-line-blue"></div> 
-                 <span>पर्वत पीयूष न्यूज पोर्टल</span> 
-             </div> 
+@if (sportsNews != null)
+{   <div class="d-flex align-items-center">
+    <div class="vertical-line"></div>
+        <h2><a href="@Url.Action("Topic", "Home", new { name = "Sports" })" class="topic-link">खेल</a></h2>
+    </div>
+        <div class="row">
+        <div class="col-lg-6">
+            <div class="card d-flex flex-row align-items-center">
+                <!-- Image on the left -->
+                <img src="@sportsNews.ImagePath" class="card-img-left fixed-height" alt="News Image" style="width: 50%; object-fit: cover;">
 
-             <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3> 
-             @* <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p> *@ 
-            @* <a asp-controller="news" asp-action="details" asp-route-id="2">read more</a> *@ 
+                <!-- Text on the right -->
+                <div class="card-body">
+                    <p class="card-text">@sportsNews.PublishedDate.ToShortDateString()</p>
+                    <h5 class="card-title">
+                        <a href="@Url.Action("Details", "Home", new { id = sportsNews.Id })" class="news-link">@sportsNews.Content</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
 
-         </article> 
-         <article class="news-article"> 
-             <div class="title-container"> 
-                 @* <div class="vertical-line"></div>  *@
-                 <span class="title-text">खेल</span> 
-             </div>
-        <img src="~/images/news_3.jpg" alt="news image" class="news-image">
-        <div class="title-container"> 
-                 <span>february 5,2025</span> 
-                 <div class="vertical-line-blue"></div> 
-                 <span>पर्वत पीयूष न्यूज पोर्टल</span> 
-             </div> 
+        <!-- Empty Space on Right -->
+        <div class="col-lg-6"></div>
+    </div>
+}
 
-            <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3> 
-            @* <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p>  *@
-            @* <a asp-controller="news" asp-action="details" asp-route-id="2">read more</a>  *@
-         </article> 
-      <article class="news-article"> 
-            <div class="title-container"> 
-                 @* <div class="vertical-line"></div>  *@
-                 <span class="title-text">खेल</span> 
-             </div>
-        <img src="~/images/news_3.jpg" alt="news image" class="news-image">
-        <div class="title-container"> 
-                 <span>february 5,2025</span> 
-                 <div class="vertical-line-blue"></div> 
-                 <span>पर्वत पीयूष न्यूज पोर्टल</span> 
-             </div> 
-            <h3>खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</h3> 
-             @* <p>नेशनल गेम्स में 35 खेल स्पर्धाओं में खिलाड़ी अपना दमखम दिखा रहे हैं। इसी बीच सीएम धामी खिलाड़ियों का उत्साहवर्धन करने पहुंचे।</p>  *@
-             @* <a asp-controller="news" asp-action="details" asp-route-id="2">read more</a>  *@
-        </article>
-    </section> 
+@if (crimeNews.Any())
+{   <div class="d-flex align-items-center">
+    <div class="vertical-line"></div>
+        <h2><a href="@Url.Action("Topic", "Home", new { name = "Crime" })" class="topic-link">अपराध</a></h2>
+        </div>
+    <div class="row">
+        @for (int i = 0; i < crimeNews.Count; i += 2)
+        {
+            <div class="row mb-3">
+                @for (int j = 0; j < 2 && i + j < crimeNews.Count; j++)
+                {
+                    var news = crimeNews[i + j];
+
+                    <div class="col-lg-6">
+                        <div class="card d-flex flex-row align-items-center">
+                            <!-- Image on the left (Smaller) -->
+                            <img src="@news.ImagePath" class="card-img-left-1" alt="News Image">
+
+                            <!-- Text on the right (Bigger) -->
+                            <div class="card-body">
+                                <p class="card-text">@news.PublishedDate.ToShortDateString()</p>
+                                <h5 class="card-title">
+                                    <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+}
+<div class="d-flex align-items-center">
+    <div class="vertical-line"></div>
+    <h2 class="topic-heading"><a href="@Url.Action("Topic", "Home", new { name = "Crime" })" class="topic-link">विरासत</a></h2>
+</div>
+
+<!-- Row for Heritage and Job News -->
+<div class="row">
+    <!-- Left Column (Heritage News - One Article) -->
+    <div class="col-md-4">
+        @if (heritageNews.Any())
+        {
+            var news = heritageNews.First();
+            <div class="card">
+                <img src="@news.ImagePath" class="card-img-top fixed-height" alt="News Image">
+                <div class="card-body">
+                    <p class="text-muted">@news.PublishedDate.ToShortDateString()</p>
+                    <h5 class="card-title">
+                        <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                    </h5>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Right Column (Job News - Four Articles) -->
+    <div class="col-md-4">
+        @foreach (var news in jobNews)
+        {
+            <div class="card d-flex flex-row align-items-center mb-1">
+                <!-- Image on the left -->
+                @* <img src="@news.ImagePath" class="card-img-left fixed-height" alt="News Image"> *@
+                <img src="@news.ImagePath" class="card-img-left-1" alt="News Image">
+
+                <!-- Text on the right -->
+                <div class="card-body">
+                    @* <div class="d-flex align-items-center"> *@
+                    
+                    <span class="text-white topic-bg"><a href="@Url.Action("Topic", "Home", new { name = "Crime" })" class="topic-link-1">@news.Topic.Name</a></span>
+                   @* </div> *@
+                    <p class="text-muted">@news.PublishedDate.ToShortDateString()</p>
+                    <h6 class="card-title">
+                        <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                    </h6>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@if (countryNews.Any())
+{  <div class="d-flex align-items-center">
+    <div class="vertical-line"></div>
+    <h2><a href="@Url.Action("Topic", "Home", new { name = "Country" })" class="topic-link">देश-विदेश</a></h2>
+    </div>
+    <div class="row">
+        @foreach (var news in countryNews)
+        {
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="@news.ImagePath" class="card-img-top fixed-height" alt="News Image">
+                    <div class="card-body">
+                        <p class="card-text">@news.PublishedDate.ToShortDateString()</p>
+                        <h5 class="card-title">
+                            <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+

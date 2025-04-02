@@ -80,17 +80,37 @@ app.MapControllerRoute(
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ParwatPiyushDB>();
+   // dbContext.Topics.RemoveRange(dbContext.Topics);
+    //dbContext.SaveChanges();
+    //if (!dbContext.Topics.Any())
+    //{
+    var existingTopics = dbContext.Topics.Select(t => t.Name).ToHashSet();
+    //dbContext.Topics.AddRange(
+    var newTopics = new List<Topics>
+      {
+            new Topics { Name = "राजनीति" },
+            new Topics { Name = "देश-विदेश" },
+            new Topics { Name = "धर्म" },
+            new Topics { Name = "खेल" },
+            new Topics { Name = "पर्यावरण" },
+            new Topics { Name = "फैशन" },
+            new Topics { Name = "उत्तराखण्ड" },
+            new Topics { Name = "अपराध" },
+            new Topics { Name = "विरासत" },
+            new Topics { Name = "नौकरशाही" },
 
-    if (!dbContext.Topics.Any())
+    };
+        //);
+    // Add only if the topic does not already exist
+    foreach (var topic in newTopics)
     {
-        dbContext.Topics.AddRange(
-            new Topics { Name = "Politics" },
-            new Topics { Name = "Technology" },
-            new Topics { Name = "Sports" },
-            new Topics { Name = "Entertainment" }
-        );
-        dbContext.SaveChanges();
+        if (!existingTopics.Contains(topic.Name))
+        {
+            dbContext.Topics.Add(topic);
+        }
     }
+    dbContext.SaveChanges();
+    //}
 }
 
 

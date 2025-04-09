@@ -1,0 +1,85 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@* @model List<List<ParwatPiyushNewsPortal.Models.Topics>> *@
+
+@* <div class="row"> *@
+@*     <div class="col-lg-4 col-md-4 text-center"> *@
+@*         <div class="d-flex align-items-center"> *@
+@*             <!-- Red Vertical Line --> *@
+@*             <div class="vertical-line"></div> *@
+@*         <h3>अन्य विषय</h3> *@
+@*         </div> *@
+@*         <ul class="list-unstyled"> *@
+@*             @foreach (var topic in Model[0]) *@
+@*             { *@
+@*                 <li> *@
+@*                     <a asp-controller="Home" asp-action="Topic" asp-route-name="@topic.Name">@topic.Name</a> *@
+@*                 </li> *@
+@*             } *@
+@*         </ul> *@
+@*     </div> *@
+
+@*     <div class="col-lg-4 col-md-4 text-center"> *@
+@*         <div class="d-flex align-items-center"> *@
+@*     <!-- Red Vertical Line --> *@
+@*     <div class="vertical-line"></div> *@
+@*         <h3>शहर समाचार</h3> *@
+@*     </div> *@
+@*         <ul class="list-unstyled"> *@
+@*             @foreach (var topic in Model[1]) *@
+@*             { *@
+@*                 <li> *@
+@*                     <a asp-controller="Home" asp-action="Topic" asp-route-name="@topic.Name">@topic.Name</a> *@
+@*                 </li> *@
+@*             } *@
+@*         </ul> *@
+@*     </div> *@
+@*      @* <div class="col-lg-4 col-md-4 text-center">  *@ 
+@*      @*                     <h3>पर्वत पीयूष न्यूज </h3>  *@ 
+@*      @*                     <p>उत्तराखंड का सबसे विश्वसनीय न्यूज़ पोर्टल</p>  *@ 
+@*      @*                     <p>पता: देहरादून, उत्तराखंड - 123456</p>  *@ 
+@*      @*                    <p>Phone:<span>+91 123456789</span></p>  *@ 
+@*      @*                     <p>Email:<span>parwatpiyush@gmail.com</span></p>  *@
+@*      @* </div> *@ 
+@* </div> *@
+@model List<ParwatPiyushNewsPortal.Models.Topics>
+
+<div class="row">
+    <!-- Left: Topics Section -->
+    <div class="col-lg-6">
+        <div class="d-flex align-items-center"> 
+             <div class="vertical-line"></div> 
+        <h3 class="text-center">विषय</h3>
+        </div>
+        <div class="container">
+            <div class="row">
+                @for (int i = 0; i < Model.Count; i += 2)
+                {
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            @if (i < Model.Count)
+                            {
+                                <a asp-controller="Home" asp-action="Topic" asp-route-name="@Model[i].Name">@Model[i].Name</a>
+                            }
+                        </div>
+                        <div class="col-6">
+                            @if (i + 1 < Model.Count)
+                            {
+                                <a asp-controller="Home" asp-action="Topic" asp-route-name="@Model[i + 1].Name">@Model[i + 1].Name</a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: Custom Content Section -->
+    <div class="col-lg-6 text-center">
+        <h3>पर्वत पीयूष न्यूज </h3>
+        <p>यह एक समाचार पोर्टल है जो सत्य और निष्पक्ष खबरों के लिए समर्पित है।</p>
+        <p>आप हमारे सोशल मीडिया चैनलों पर भी हमें फॉलो कर सकते हैं।</p>
+        <p>हमसे संपर्क करने के लिए नीचे दिए गए ईमेल का उपयोग करें।</p>
+    </div>
+</div>

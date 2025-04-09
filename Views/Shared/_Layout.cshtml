@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ParwatPiyushNewsPortal.styles.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 </head>
 <body>
     <header>
@@ -15,7 +17,7 @@
             <div class="logo">पर्वत पीयूष न्यूज पोर्टल</div>
             <div class="ads">
                 <!-- Ad Space -->
-                <img src="~/images/ads.webp" alt="Advertisement">
+                @* <img src="~/images/ads.webp" alt="Advertisement"> *@
             </div>
         </div>
       
@@ -32,30 +34,8 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">उत्तराखंड</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">38वेंराष्ट्रीयखेल</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">देश-विदेश</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">धर्म</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">राजनीति </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">खेल</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">पर्यावरण</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">फैशन</a>
-                        </li>
+                         @await Component.InvokeAsync("TopicNavbar")
+                       
                     </ul>
                     <ul class="navbar-nav">
                         @* @if (User.Identity.IsAuthenticated) *@
@@ -78,25 +58,25 @@
                 </div>
             </div>
         </nav>
-     <div class="container">
-    <!-- News Ticker -->
-  <div class="row align-items-center news-container">
-    <span class="col-lg-2 col-md-3 col-sm-4 news-ticker-container">
-                    ब्रेकिंग न्यूज
-        </span>
-                <div class="col-lg-10 col-md-9 col-sm-8 news-ticker-wrapper">
-                    <div class="news-ticker">
-           <ul id="newsTicker">
-                <li><a href="#">डाॅ मायाराम उनियाल को केंद्रीय आयुष मंत्रालय ने प्रदान किया प्रतिष्ठित धन्वंतरी पुरस्कार</a></li>
-                <li><a href="#">चारधाम मंदिरों की पूजा का लाइव प्रसारण नहीं ! हरेला की रही धूम</a></li>
-                <li><a href="#">गायिका सुनिधि चौहान के गीतों का जादू दर्शकों के सिर चढ़कर बोला</a></li>
-                <li><a href="#">खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</a></li>
+    @*  <div class="container"> *@
+    @* <!-- News Ticker --> *@
+    @*       <div class="row align-items-center news-container"> *@
+    @*                 <span class="col-lg-2 col-md-3 col-sm-4 news-ticker-container"> *@
+    @*                         ब्रेकिंग न्यूज *@
+    @*                 </span> *@
+    @*                 <div class="col-lg-10 col-md-9 col-sm-8 news-ticker-wrapper"> *@
+    @*                         <div class="news-ticker"> *@
+    @*                             <ul id="newsTicker"> *@
+    @*                                 <li><a href="#">डाॅ मायाराम उनियाल को केंद्रीय आयुष मंत्रालय ने प्रदान किया प्रतिष्ठित धन्वंतरी पुरस्कार</a></li> *@
+    @*                                 <li><a href="#">चारधाम मंदिरों की पूजा का लाइव प्रसारण नहीं ! हरेला की रही धूम</a></li> *@
+    @*                                 <li><a href="#">गायिका सुनिधि चौहान के गीतों का जादू दर्शकों के सिर चढ़कर बोला</a></li> *@
+    @*                                 <li><a href="#">खिलाड़ियों का उत्साहवर्धन करने स्टेडियम पहुंचे मुख्यमंत्री धामी, साथ बैठकर किया भोजन</a></li> *@
        
-            </ul>
-        </div>
-    </div>
-    </div>
-    </div>
+    @*                             </ul> *@
+    @*                         </div> *@
+    @*                 </div> *@
+    @*         </div> *@
+    @* </div> *@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -106,35 +86,37 @@
 
      <footer class="border-top footer text-muted"> 
         <div class="container"> 
-              <div class="container-fluid"> 
-                 <div class="row"> 
-                     <div class="col-lg-4 col-md-4 text-center"> 
-                         <h3>अन्य विषय</h3> 
-                         <ul>   
-                             <li>पर्यावरण</li> 
-                             <li>फैशन</li> 
-                             <li>प्रेरणा</li> 
-                             <li>अपराध</li> 
-                         </ul> 
-                     </div> 
-                     <div class="col-lg-4 col-md-4 text-center"> 
-                         <h3>शहर समाचार </h3> 
-                         <ul> 
-                             <li>देहरादुन</li> 
-                             <li> हरिद्वार </li> 
-                             <li>हल्दवानी</li> 
-                             <li> ऋषिकेश</li> 
-                         </ul> 
-                     </div> 
-                     <div class="col-lg-4 col-md-4 text-center"> 
-                         <h3>पर्वत पीयूष न्यूज </h3> 
-                         <p>उत्तराखंड का सबसे विश्वसनीय न्यूज़ पोर्टल</p> 
-                         <p>पता: देहरादून, उत्तराखंड - 123456</p> 
-                        <p>Phone:<span>+91 123456789</span></p> 
-                         <p>Email:<span>parwatpiyush@gmail.com</span></p> 
-                    </div> 
-                </div> 
-              </div> 
+              @* <div class="container-fluid">  *@
+                 @* <div class="row">  *@
+                 @*     <div class="col-lg-4 col-md-4 text-center"> *@
+                        @await Component.InvokeAsync("FooterTopics")
+
+                     @*     <h3>अन्य विषय</h3>  *@
+                     @*     <ul>    *@
+                     @*         <li>पर्यावरण</li>  *@
+                     @*         <li>फैशन</li>  *@
+                     @*         <li>प्रेरणा</li>  *@
+                     @*         <li>अपराध</li>  *@
+                     @*     </ul>  *@
+                     @* </div>  *@
+                     @* <div class="col-lg-4 col-md-4 text-center">  *@
+                     @*     <h3>शहर समाचार </h3>  *@
+                     @*     <ul>  *@
+                     @*         <li>देहरादुन</li>  *@
+                     @*         <li> हरिद्वार </li>  *@
+                     @*         <li>हल्दवानी</li>  *@
+                     @*         <li> ऋषिकेश</li>  *@
+                     @*     </ul>  *@
+                     @* </div>  *@
+                    @*  <div class="col-lg-4 col-md-4 text-center">  *@
+                    @* @*      <h3>पर्वत पीयूष न्यूज </h3>  *@ 
+                    @* @*      <p>उत्तराखंड का सबसे विश्वसनीय न्यूज़ पोर्टल</p>  *@ 
+                    @* @*      <p>पता: देहरादून, उत्तराखंड - 123456</p>  *@ 
+                    @* @*     <p>Phone:<span>+91 123456789</span></p>  *@ 
+                    @* @*      <p>Email:<span>parwatpiyush@gmail.com</span></p>  *@ 
+                    @* @* </div>  *@
+              @*   </div>  *@
+               @* </div>   *@
          </div> 
      </footer> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

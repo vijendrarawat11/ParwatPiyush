@@ -27,6 +27,7 @@ namespace ParwatPiyushNewsPortal.Controllers
         {
             var latestNews = await _context.News.OrderByDescending(n => n.PublishedDate).Take(5).ToListAsync();
             var topics = await _context.Topics.Include(t => t.News).ToListAsync();
+            var latestBreakingNews = await _context.News.OrderByDescending(n => n.PublishedDate).Take(5).ToListAsync();
 
             //var newsByTopic = topics.ToDictionary(topic => topic.Name, topic => topic.News.OrderByDescending(n => n.PublishedDate).Take(4).ToList());
             var newsByTopic = topics
@@ -38,6 +39,8 @@ namespace ParwatPiyushNewsPortal.Controllers
 
             ViewBag.LatestNews = latestNews;
             ViewBag.NewsByTopic = newsByTopic;
+            ViewBag.BreakingNews = latestBreakingNews;
+
 
             return View();
         }
@@ -60,12 +63,25 @@ namespace ParwatPiyushNewsPortal.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public IActionResult Details(int id)
-        //public async Task<IActionResult> Details(int id)
+        //public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             //var news = await _context.News.FindAsync(id);
-            var news = _context.News.Include(n => n.Topic).FirstOrDefault(n => n.Id == id);
+            var news = await _context.News.Include(n => n.Topic).FirstOrDefaultAsync(n => n.Id == id);
             if (news == null) return NotFound();
+            var previousNews = await _context.News
+                           .Where(n => n.Id < id)
+                           .OrderByDescending(n => n.Id)
+                           .FirstOrDefaultAsync();
+
+            var nextNews = await _context.News
+                            .Where(n => n.Id > id)
+                            .OrderBy(n => n.Id)
+                            .FirstOrDefaultAsync();
+
+            ViewBag.PreviousNews = previousNews;
+            ViewBag.NextNews = nextNews;
+
             return View(news);
         }
         public IActionResult Topic(string name)

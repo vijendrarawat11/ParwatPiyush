@@ -14,7 +14,25 @@
     var heritageNews = newsByTopic.ContainsKey("विरासत") ? newsByTopic["विरासत"].OrderByDescending(n => n.PublishedDate).Take(1).ToList(): new List<News>();
     var jobNews = newsByTopic.ContainsKey("नौकरशाही") ? newsByTopic["नौकरशाही"].OrderByDescending(n => n.PublishedDate).Take(4).ToList() : new List<News>();
 }
-
+<div class="container-fluid px-0">
+    <div class="row align-items-center bg-danger text-white py-2" style="margin-top: 0;">
+        <div class="col-lg-2 col-md-3 col-sm-4 fw-bold ps-3">
+            ब्रेकिंग न्यूज:
+        </div>
+        <div class="col-lg-10 col-md-9 col-sm-8">
+            <marquee behavior="scroll" direction="left" scrollamount="6">
+                @foreach (var news in ViewBag.BreakingNews)
+                {
+                    <span class="me-4">
+                        <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white text-decoration-none">
+                            @news.Title
+                        </a>
+                    </span>
+                }
+            </marquee>
+        </div>
+    </div>
+</div>
 <<!-- First Row: Slider + Small News Cards -->
 <div class="row">
     <!-- News Slider (col-lg-8) -->
@@ -29,7 +47,7 @@
 
                             <!-- Topic (Top-Left) -->
                             <h5 class="position-absolute top-0 start-0 p-2 text-white topic-bg">
-                                @news.Topic.Name
+                                <a href="@Url.Action("Topic", "Home", new { name = news.Topic.Name })" class="text-white topic-link">@news.Topic.Name</a>
                             </h5>
 
                             <!-- News Content (Bottom-Left) -->
@@ -158,7 +176,7 @@
 {   <div class="d-flex align-items-center">
     <!-- Red Vertical Line -->
     <div class="vertical-line"></div>
-    <h2><a href="@Url.Action("Topic", "Home", new { name = "Country" })" class="topic-link">देश-विदेश</a></h2>
+        <h2><a href="@Url.Action("Topic", "Home", new { name = "देश-विदेश" })" class="topic-link">देश-विदेश</a></h2>
     </div>
     <div class="row">
         @foreach (var news in countryNews)
@@ -222,7 +240,7 @@
 
                             <!-- Text on the right (Bigger) -->
                             <div class="card-body">
-                                <span class="text-white topic-bg"><a href="@Url.Action("Topic", "Home", new { name = "Crime" })" class="topic-link-1">@news.Topic.Name</a></span>
+                                <span class="text-white topic-bg"><a href="@Url.Action("Topic", "Home", new { name = "फैशन" })" class="topic-link-1">@news.Topic.Name</a></span>
                                 <p class="card-text">@news.PublishedDate.ToShortDateString()</p>
                                 <h5 class="card-title">
                                     <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
@@ -239,7 +257,7 @@
 @if (sportsNews != null)
 {   <div class="d-flex align-items-center">
     <div class="vertical-line"></div>
-        <h2><a href="@Url.Action("Topic", "Home", new { name = "Sports" })" class="topic-link">खेल</a></h2>
+        <h2><a href="@Url.Action("Topic", "Home", new { name = "खेल" })" class="topic-link">खेल</a></h2>
     </div>
         <div class="row">
         <div class="col-lg-6">
@@ -265,7 +283,7 @@
 @if (crimeNews.Any())
 {   <div class="d-flex align-items-center">
     <div class="vertical-line"></div>
-        <h2><a href="@Url.Action("Topic", "Home", new { name = "Crime" })" class="topic-link">अपराध</a></h2>
+        <h2><a href="@Url.Action("Topic", "Home", new { name = "अपराध" })" class="topic-link">अपराध</a></h2>
         </div>
     <div class="row">
         @for (int i = 0; i < crimeNews.Count; i += 2)
@@ -296,7 +314,7 @@
 }
 <div class="d-flex align-items-center">
     <div class="vertical-line"></div>
-    <h2 class="topic-heading"><a href="@Url.Action("Topic", "Home", new { name = "Crime" })" class="topic-link">विरासत</a></h2>
+    <h2 class="topic-heading"><a href="@Url.Action("Topic", "Home", new { name = "विरासत" })" class="topic-link">विरासत</a></h2>
 </div>
 
 <!-- Row for Heritage and Job News -->
@@ -330,8 +348,8 @@
                 <!-- Text on the right -->
                 <div class="card-body">
                     @* <div class="d-flex align-items-center"> *@
-                    
-                    <span class="text-white topic-bg"><a href="@Url.Action("Topic", "Home", new { name = "Crime" })" class="topic-link-1">@news.Topic.Name</a></span>
+
+                    <span class="text-white topic-bg"><a href="@Url.Action("Topic", "Home", new { name = "नौकरशाही" })" class="topic-link-1">@news.Topic.Name</a></span>
                    @* </div> *@
                     <p class="text-muted">@news.PublishedDate.ToShortDateString()</p>
                     <h6 class="card-title">
@@ -346,7 +364,7 @@
 @if (countryNews.Any())
 {  <div class="d-flex align-items-center">
     <div class="vertical-line"></div>
-    <h2><a href="@Url.Action("Topic", "Home", new { name = "Country" })" class="topic-link">देश-विदेश</a></h2>
+        <h2><a href="@Url.Action("Topic", "Home", new { name = "देश-विदेश" })" class="topic-link">देश-विदेश</a></h2>
     </div>
     <div class="row">
         @foreach (var news in countryNews)

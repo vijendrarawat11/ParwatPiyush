@@ -697,3 +697,6 @@ img.img-fluid.rounded-start {
     display: flex;
     flex-direction: column;
 }
+marquee a:hover {
+    text-decoration: underline;
+}

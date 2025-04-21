@@ -54,7 +54,7 @@
                                 <div class="position-absolute bottom-0 start-0 p-2 text-white bg-dark bg-opacity-75 w-100 content-overlay">
                                 <p class="mb-1">@news.PublishedDate.ToShortDateString()</p>
                                 <h6 class="fw-bold">
-                                    <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Content</a>
+                                    <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Title</a>
                                 </h6>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
                         <div class="position-absolute bottom-0 start-0 p-2 text-white bg-dark bg-opacity-75 w-100">
                             <p class="mb-1">@news.PublishedDate.ToShortDateString()</p>
                             <h6 class="fw-bold">
-                                <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Content</a>
+                                <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Title</a>
                             </h6>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                         <div class="position-absolute bottom-0 start-0 p-2 text-white bg-dark bg-opacity-75 w-100">
                             <p class="mb-1">@news.PublishedDate.ToShortDateString()</p>
                             <h6 class="fw-bold">
-                                <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Content</a>
+                                <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Title</a>
                             </h6>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                         <div class="position-absolute bottom-0 start-0 p-2 text-white bg-dark bg-opacity-75 w-100">
                             <p class="mb-1">@news.PublishedDate.ToShortDateString()</p>
                             <h6 class="fw-bold">
-                                <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Content</a>
+                                <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="text-white news-link">@news.Title</a>
                             </h6>
                         </div>
                     </div>
@@ -187,7 +187,7 @@
                     <div class="card-body">
                         <p class="card-text">@news.PublishedDate.ToShortDateString()</p>
                         <h5 class="card-title">
-                            <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                            <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Title</a>
                         </h5>
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                 <div class="card-body">
                     <p class="card-text">@religionNews.PublishedDate.ToShortDateString()</p>
                     <h5 class="card-title">
-                        <a href="@Url.Action("Details", "Home", new { id = religionNews.Id })" class="news-link">@religionNews.Content</a>
+                        <a href="@Url.Action("Details", "Home", new { id = religionNews.Id })" class="news-link">@religionNews.Title</a>
                     </h5>
                 </div>
             </div>
@@ -243,7 +243,7 @@
                                 <span class="text-white topic-bg"><a href="@Url.Action("Topic", "Home", new { name = "फैशन" })" class="topic-link-1">@news.Topic.Name</a></span>
                                 <p class="card-text">@news.PublishedDate.ToShortDateString()</p>
                                 <h5 class="card-title">
-                                    <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                                    <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Title</a>
                                 </h5>
                             </div>
                         </div>
@@ -269,7 +269,7 @@
                 <div class="card-body">
                     <p class="card-text">@sportsNews.PublishedDate.ToShortDateString()</p>
                     <h5 class="card-title">
-                        <a href="@Url.Action("Details", "Home", new { id = sportsNews.Id })" class="news-link">@sportsNews.Content</a>
+                        <a href="@Url.Action("Details", "Home", new { id = sportsNews.Id })" class="news-link">@sportsNews.Title</a>
                     </h5>
                 </div>
             </div>
@@ -302,7 +302,7 @@
                             <div class="card-body">
                                 <p class="card-text">@news.PublishedDate.ToShortDateString()</p>
                                 <h5 class="card-title">
-                                    <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                                    <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Title</a>
                                 </h5>
                             </div>
                         </div>
@@ -329,7 +329,7 @@
                 <div class="card-body">
                     <p class="text-muted">@news.PublishedDate.ToShortDateString()</p>
                     <h5 class="card-title">
-                        <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                        <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Title</a>
                     </h5>
                 </div>
             </div>
@@ -353,7 +353,7 @@
                    @* </div> *@
                     <p class="text-muted">@news.PublishedDate.ToShortDateString()</p>
                     <h6 class="card-title">
-                        <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                        <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Title</a>
                     </h6>
                 </div>
             </div>
@@ -364,7 +364,7 @@
 @if (countryNews.Any())
 {  <div class="d-flex align-items-center">
     <div class="vertical-line"></div>
-        <h2><a href="@Url.Action("Topic", "Home", new { name = "देश-विदेश" })" class="topic-link">देश-विदेश</a></h2>
+        <h2><a href="@Url.Action("Topic", "Home", new { name = "उत्तराखण्ड" })" class="topic-link">उत्तराखण्ड</a></h2>
     </div>
     <div class="row">
         @foreach (var news in countryNews)
@@ -375,7 +375,7 @@
                     <div class="card-body">
                         <p class="card-text">@news.PublishedDate.ToShortDateString()</p>
                         <h5 class="card-title">
-                            <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a>
+                            <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Title</a>
                         </h5>
                     </div>
                 </div>

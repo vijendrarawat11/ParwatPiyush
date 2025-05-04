@@ -37,7 +37,7 @@
 <div class="row">
     <!-- News Slider (col-lg-8) -->
     <div class="col-lg-8">
-        <div id="newsSlider" class="carousel slide" data-bs-ride="carousel">
+        <div id="newsSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
             <div class="carousel-inner">
                 @foreach (var news in latestNews)
                 {
@@ -97,7 +97,7 @@
                 </div>
             }
 
-            @foreach (var news in latestNews.Where(n => n.Topic.Name == "राजनीति").Take(1))
+            @foreach (var news in latestNews.Where(n => n.Topic.Name == "देश-विदेश").Take(1))
             {
                 <div class="col-6 mb-3">
                     <div class="position-relative card-overlay">
@@ -118,7 +118,7 @@
                     </div>
                 </div>
             }
-            @foreach (var news in latestNews.Where(n => n.Topic.Name != "उत्तराखण्ड" && n.Topic.Name != "राजनीति").Take(2))
+            @foreach (var news in latestNews.Where(n => n.Topic.Name != "उत्तराखण्ड").Take(2))
             {
                 <div class="col-lg-6 col-12 mb-3">
                     <div class="position-relative card-overlay">
@@ -145,25 +145,25 @@
 
 
 <!-- News By Topic -->
-@* @foreach (var topic in newsByTopic.Keys) *@
-@* { *@
-@*           <h2><a href="@Url.Action("Topic", "Home", new { name = topic })" class="topic-link">@topic</a></h2>  *@
-@*     <div class="row"> *@
-@*         @foreach (var news in newsByTopic[topic]) *@
-@*         { *@
-@*             <div class="col-md-3"> *@
-@*                 <div class="card"> *@
-@*                             <img src="@news.ImagePath" class="card-img-top fixed-height" alt="News Image"> *@
-@*                     <div class="card-body"> *@
-@*                                  <p class="card-text">@news.PublishedDate.ToShortDateString()</p> *@
-@*                                 <h5 class="card-title">  <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Content</a></h5> *@                     
-@*                         @* <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="btn btn-primary">Read More</a> *@ 
-@*                     </div> *@
-@*                 </div> *@
-@*             </div> *@
-@*         } *@
-@*     </div> *@
-@* } *@
+ @foreach (var topic in newsByTopic.Keys) 
+ { 
+         <h2><a href="@Url.Action("Topic", "Home", new { name = topic })" class="topic-link">@topic</a></h2>  
+    <div class="row"> 
+        @foreach (var news in newsByTopic[topic]) 
+         { 
+             <div class="col-md-3"> 
+                 <div class="card"> 
+                             <img src="@news.ImagePath" class="card-img-top fixed-height" alt="News Image"> 
+                     <div class="card-body"> 
+                                  <p class="card-text">@news.PublishedDate.ToShortDateString()</p> 
+                                 <h5 class="card-title">  <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Title</a></h5>                  
+                                 @* <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="btn btn-primary">Read More</a> *@ 
+                     </div> 
+                 </div> 
+             </div> 
+         } 
+     </div> 
+ } 
 
 
 
@@ -171,7 +171,7 @@
 
 
 
-
+@*
 @if (countryNews.Any())
 {   <div class="d-flex align-items-center">
     <!-- Red Vertical Line -->
@@ -343,15 +343,15 @@
             <div class="card d-flex flex-row align-items-center mb-1">
                 <!-- Image on the left -->
                 @* <img src="@news.ImagePath" class="card-img-left fixed-height" alt="News Image"> *@
-                <img src="@news.ImagePath" class="card-img-left-1" alt="News Image">
+ @*               <img src="@news.ImagePath" class="card-img-left-1" alt="News Image">
 
                 <!-- Text on the right -->
                 <div class="card-body">
                     @* <div class="d-flex align-items-center"> *@
 
-                    <span class="text-white topic-bg"><a href="@Url.Action("Topic", "Home", new { name = "नौकरशाही" })" class="topic-link-1">@news.Topic.Name</a></span>
+ @*                   <span class="text-white topic-bg"><a href="@Url.Action("Topic", "Home", new { name = "नौकरशाही" })" class="topic-link-1">@news.Topic.Name</a></span>
                    @* </div> *@
-                    <p class="text-muted">@news.PublishedDate.ToShortDateString()</p>
+ @*                   <p class="text-muted">@news.PublishedDate.ToShortDateString()</p>
                     <h6 class="card-title">
                         <a href="@Url.Action("Details", "Home", new { id = news.Id })" class="news-link">@news.Title</a>
                     </h6>
@@ -383,4 +383,4 @@
         }
     </div>
 }
-
+*@

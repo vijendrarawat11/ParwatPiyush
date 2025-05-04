@@ -24,7 +24,7 @@
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3" style="background-color:#C80000;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">पर्वत पीयूष न्यूज पोर्टल</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">पर्वत पीयूष </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,8 @@
                         @if (User?.Identity?.IsAuthenticated == true)
                         {
                             <li class="nav-item">
-                                <span class="nav-link text-white">Welcome, @User.Identity.Name!</span>
+                                @* <span class="nav-link text-white">Welcome, @User.Identity.Name!</span> *@
+                                <a class="nav-link text-white" href="/Author/CreateNews">Upload News</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="/Account/Logout">Logout</a>

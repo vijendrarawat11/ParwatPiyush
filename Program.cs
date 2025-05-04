@@ -54,7 +54,7 @@ app.Use(async (context, next) =>
     {
         if (!context.User.Identity.IsAuthenticated && context.Request.Path.StartsWithSegments("/Author"))
         {
-            Debug.WriteLine("🔒 Unauthorized access attempt detected!");
+            Debug.WriteLine("Unauthorized access attempt detected!");
             context.Response.Redirect("/Account/Login");
             return;
         }
@@ -80,7 +80,7 @@ app.MapControllerRoute(
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<ParwatPiyushDB>();
-   // dbContext.Topics.RemoveRange(dbContext.Topics);
+    //dbContext.Topics.RemoveRange(dbContext.Topics);
     //dbContext.SaveChanges();
     //if (!dbContext.Topics.Any())
     //{
@@ -88,16 +88,16 @@ using (var scope = app.Services.CreateScope())
     //dbContext.Topics.AddRange(
     var newTopics = new List<Topics>
       {
-            new Topics { Name = "राजनीति" },
-            new Topics { Name = "देश-विदेश" },
-            new Topics { Name = "धर्म" },
-            new Topics { Name = "खेल" },
-            new Topics { Name = "पर्यावरण" },
-            new Topics { Name = "फैशन" },
             new Topics { Name = "उत्तराखण्ड" },
+            new Topics { Name = "देश-विदेश" },
+            new Topics { Name = "खेल" },
+            new Topics { Name = "धर्म" },
+            new Topics { Name = "फैशन" },
+            /*new Topics { Name = "राजनीति" },
+            new Topics { Name = "पर्यावरण" },
             new Topics { Name = "अपराध" },
             new Topics { Name = "विरासत" },
-            new Topics { Name = "नौकरशाही" },
+            new Topics { Name = "नौकरशाही" }, */
 
     };
         //);
